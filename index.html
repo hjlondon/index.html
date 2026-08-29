@@ -217,6 +217,11 @@
     border: 2px solid var(--ink);
     box-shadow: 6px 6px 0 var(--ink);
     padding: 28px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .card:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 10px 10px 0 var(--orange);
   }
   .card .icon {
     font-size: 28px;
@@ -225,6 +230,10 @@
     background: var(--paper-dim);
     border: 2px solid var(--ink);
     padding: 8px 12px;
+    transition: transform 0.15s ease;
+  }
+  .card:hover .icon {
+    transform: scale(1.15) rotate(-6deg);
   }
   .card h3 { font-size: 19px; margin-bottom: 10px; }
   .card p { color: var(--steel); font-size: 15px; }
