@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Locations — Rotating Equipment Workforce Provider</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #14171c;
+    --steel: #666c78;
+    --paper: #ffffff;
+    --paper-dim: #f4f5f7;
+    --red: #dd0a2e;
+    --red-dark: #b3081f;
+    --navy: #0c1220;
+    --line: #e7e8ec;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Inter", system-ui, sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.6;
+  }
+
+  /* ---------- Header ---------- */
+  header {
+    background: var(--navy);
+    color: #fff;
+  }
+  .nav {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 19px;
+    letter-spacing: 0.2px;
+  }
+  .logo .mark {
+    width: 26px;
+    height: 26px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .nav-links { display: flex; align-items: center; gap: 32px; }
+  .nav-links a {
+    color: #cfd3db;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .nav-links a.active {
+    color: #fff;
+    border-color: var(--red);
+  }
+  .nav-links a:hover { color: #fff; }
+  .burger {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  .burger span, .burger::before, .burger::after { display: none; }
+  .burger svg { width: 16px; height: 16px; }
+
+  /* ---------- Hero / locations section ---------- */
+  .locations {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 64px 24px 80px;
+  }
+
+  .kicker {
+    display: inline-block;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: var(--ink);
+    margin-bottom: 16px;
+    position: relative;
+    padding-bottom: 12px;
+  }
+  .kicker::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 46px;
+    height: 3px;
+    background: var(--red);
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 24px;
+  }
+
+  h1 {
+    font-size: clamp(32px, 4.2vw, 52px);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    max-width: 11ch;
+  }
+
+  .map-wrap {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .map-wrap svg { width: 100%; max-width: 560px; height: auto; }
+
+  .pin {
+    position: absolute;
+    left: 41%;
+    top: 62%;
+    transform: translate(-50%, -100%);
+    filter: drop-shadow(0 6px 10px rgba(0,0,0,0.25));
+  }
+  .pin svg { width: 48px; height: 58px; display: block; }
+
+  .carousel-controls {
+    display: flex;
+    gap: 12px;
+    margin-top: 32px;
+    justify-content: flex-end;
+  }
+  .carousel-controls button {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: var(--paper-dim);
+    color: var(--steel);
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s, color 0.15s;
+  }
+  .carousel-controls button.primary {
+    background: var(--red);
+    color: #fff;
+  }
+  .carousel-controls button:hover.primary { background: var(--red-dark); }
+  .carousel-controls button:disabled { opacity: 0.5; cursor: default; }
+
+  /* ---------- Location cards ---------- */
+  .cards {
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .card {
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    aspect-ratio: 4 / 3.1;
+    display: block;
+    text-decoration: none;
+    color: #fff;
+  }
+
+  .placeholder-img {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--ph-a, #4a5568), var(--ph-b, #2d3748));
+  }
+  .placeholder-img svg { width: 42%; max-width: 90px; opacity: 0.85; }
+
+  .card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.65) 100%);
+  }
+
+  .card-body {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    padding: 16px;
+    z-index: 2;
+  }
+
+  .flag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    background: rgba(255,255,255,0.16);
+    padding: 4px 8px;
+    border-radius: 3px;
+    margin-bottom: 8px;
+    backdrop-filter: blur(2px);
+  }
+  .flag .swatch {
+    width: 16px;
+    height: 11px;
+    border-radius: 2px;
+    background: var(--swatch, #dd0a2e);
+    display: inline-block;
+  }
+
+  .card-body h3 {
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .placeholder-label {
+    position: absolute;
+    bottom: 6px;
+    right: 8px;
+    z-index: 2;
+    font-size: 10px;
+    letter-spacing: 0.5px;
+    color: rgba(255,255,255,0.55);
+    text-transform: uppercase;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 980px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .cards { grid-template-columns: repeat(3, 1fr); }
+    .nav-links a:not(.mobile-visible) { display: none; }
+  }
+  @media (max-width: 560px) {
+    .cards { grid-template-columns: 1fr; }
+    .carousel-controls { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <a class="logo" href="#">
+      <span class="mark">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="10" stroke="#dd0a2e" stroke-width="2"/>
+          <path d="M12 6v6l4 2" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </span>
+      ROTOR<span style="color:#dd0a2e">WORKS</span>
+    </a>
+    <div class="nav-links">
+      <a href="#" >Jobs</a>
+      <a href="#">FAQs</a>
+      <a href="#" class="active">Locations</a>
+      <a href="#">Talent Communities</a>
+    </div>
+    <button class="burger" aria-label="Menu">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 6h18M3 12h18M3 18h18" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </nav>
+</header>
+
+<section class="locations">
+  <span class="kicker">OUR LOCATIONS</span>
+
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <h1>Rotating Equipment Workforce Provider</h1>
+    </div>
+
+    <div class="map-wrap">
+      <!-- Simplified continental USA outline -->
+      <svg viewBox="0 0 600 380" xmlns="http://www.w3.org/2000/svg">
+        <path d="M55,120 L70,95 L100,85 L120,60 L150,55 L165,40 L200,35 L230,45 L255,35 L290,40
+                 L320,30 L360,35 L400,45 L430,55 L455,50 L480,65 L500,75 L520,95 L535,115
+                 L545,140 L555,160 L548,175 L560,190 L555,210 L540,225 L520,235 L525,255
+                 L500,270 L470,265 L450,280 L420,290 L430,310 L410,330 L390,320 L370,335
+                 L350,320 L330,330 L310,315 L300,330 L280,320 L270,300 L240,305 L220,290
+                 L195,295 L180,275 L155,270 L140,250 L120,245 L100,225 L85,210 L70,195
+                 L60,175 L50,150 Z"
+              fill="#e2e4e9" stroke="#c7cad2" stroke-width="2"/>
+        <!-- decorative dot cities -->
+        <circle cx="120" cy="150" r="3" fill="#b9bcc4"/>
+        <circle cx="200" cy="200" r="3" fill="#b9bcc4"/>
+        <circle cx="330" cy="130" r="3" fill="#b9bcc4"/>
+        <circle cx="420" cy="180" r="3" fill="#b9bcc4"/>
+        <circle cx="470" cy="230" r="3" fill="#b9bcc4"/>
+        <circle cx="150" cy="230" r="3" fill="#b9bcc4"/>
+      </svg>
+
+      <div class="pin" title="Texas">
+        <svg viewBox="0 0 24 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 0C5.4 0 0 5.4 0 12c0 9 12 18 12 18s12-9 12-18c0-6.6-5.4-12-12-12z" fill="#dd0a2e"/>
+          <circle cx="12" cy="12" r="5" fill="#fff"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="carousel-controls">
+    <button aria-label="Previous" disabled>&#8249;</button>
+    <button class="primary" aria-label="Next">&#8250;</button>
+  </div>
+
+  <div class="cards">
+    <a class="card" href="#" style="--ph-a:#8a1f1f; --ph-b:#3d0d0d;">
+      <div class="placeholder-img">
+        <svg viewBox="0 0 64 64" fill="#fff" xmlns="http://www.w3.org/2000/svg"><path d="M32 4a4 4 0 014 4v4h6a2 2 0 012 2v6h4a4 4 0 014 4v4a4 4 0 01-4 4h-4v6a2 2 0 01-2 2h-6v4a4 4 0 01-8 0v-4h-6a2 2 0 01-2-2v-6h-4a4 4 0 01-4-4v-4a4 4 0 014-4h4v-6a2 2 0 012-2h6V8a4 4 0 014-4z"/></svg>
+      </div>
+      <span class="placeholder-label">Image placeholder</span>
+      <div class="card-body">
+        <span class="flag"><span class="swatch" style="--swatch:#002868"></span>USA</span>
+        <h3>Houston, Texas</h3>
+      </div>
+    </a>
+
+    <a class="card" href="#" style="--ph-a:#1f4d8a; --ph-b:#0d1f3d;">
+      <div class="placeholder-img">
+        <svg viewBox="0 0 64 64" fill="#fff" xmlns="http://www.w3.org/2000/svg"><path d="M32 4a4 4 0 014 4v4h6a2 2 0 012 2v6h4a4 4 0 014 4v4a4 4 0 01-4 4h-4v6a2 2 0 01-2 2h-6v4a4 4 0 01-8 0v-4h-6a2 2 0 01-2-2v-6h-4a4 4 0 01-4-4v-4a4 4 0 014-4h4v-6a2 2 0 012-2h6V8a4 4 0 014-4z"/></svg>
+      </div>
+      <span class="placeholder-label">Image placeholder</span>
+      <div class="card-body">
+        <span class="flag"><span class="swatch" style="--swatch:#002868"></span>USA</span>
+        <h3>Midland, Texas</h3>
+      </div>
+    </a>
+
+    <a class="card" href="#" style="--ph-a:#1f8a4d; --ph-b:#0d3d1f;">
+      <div class="placeholder-img">
+        <svg viewBox="0 0 64 64" fill="#fff" xmlns="http://www.w3.org/2000/svg"><path d="M32 4a4 4 0 014 4v4h6a2 2 0 012 2v6h4a4 4 0 014 4v4a4 4 0 01-4 4h-4v6a2 2 0 01-2 2h-6v4a4 4 0 01-8 0v-4h-6a2 2 0 01-2-2v-6h-4a4 4 0 01-4-4v-4a4 4 0 014-4h4v-6a2 2 0 012-2h6V8a4 4 0 014-4z"/></svg>
+      </div>
+      <span class="placeholder-label">Image placeholder</span>
+      <div class="card-body">
+        <span class="flag"><span class="swatch" style="--swatch:#002868"></span>USA</span>
+        <h3>Corpus Christi, Texas</h3>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+</body>
+</html>
