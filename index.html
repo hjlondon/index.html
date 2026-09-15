@@ -3,392 +3,994 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Forge Talent — Skilled Trades Recruitment</title>
+<title>Darwin Industrial — Rotating Equipment Staffing Partner</title>
+<meta name="description" content="Darwin Industrial connects rotating-equipment businesses across the USA with specialist field service, engineering and commercial leadership talent.">
+<meta name="keywords" content="rotating equipment recruitment, field service engineer staffing, turbomachinery recruiters, compressor engineer jobs, pump industry recruiters, industrial staffing USA">
+<meta name="author" content="Darwin Industrial">
+<meta property="og:title" content="Darwin Industrial — Rotating Equipment Staffing Partner">
+<meta property="og:description" content="Specialist talent for critical rotating equipment. Field service, engineering and commercial leadership recruitment across the USA.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#14161a">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --ink: #1d2333;
-    --steel: #5b6478;
-    --paper: #ffffff;
-    --paper-dim: #f4f5f8;
-    --orange: #f28b1e;
-    --orange-dark: #d9730d;
-    --navy: #232a3d;
-    --line: #e2e5ec;
+  :root{
+    --charcoal:#14161a;
+    --charcoal-2:#1c1f26;
+    --charcoal-3:#23262e;
+    --off-white:#f3f1ec;
+    --steel:#8b93a1;
+    --steel-dark:#4b515c;
+    --line:#2f333c;
+    --line-light:#d9d6cd;
+    --orange:#ff5a1f;
+    --orange-dim:#c9461a;
+    --blue:#2ea3ff;
+    --white:#ffffff;
+    --radius:6px;
+    --maxw:1320px;
+    --ease:cubic-bezier(.16,.84,.32,1);
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:"Inter",system-ui,sans-serif;
+    background:var(--charcoal);
+    color:var(--off-white);
+    line-height:1.6;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{
+    font-family:"Barlow Condensed",system-ui,sans-serif;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:0.01em;
+    line-height:1.05;
+  }
+  .mono{font-family:"IBM Plex Mono",monospace;}
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  ul{list-style:none;}
+  button{font-family:inherit;cursor:pointer;border:none;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px;}
+  section{position:relative;}
 
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: "IBM Plex Sans", system-ui, sans-serif;
-    color: var(--ink);
-    background: var(--paper);
-    line-height: 1.6;
+  /* grain overlay */
+  .grain{
+    position:fixed;inset:0;pointer-events:none;z-index:999;
+    opacity:.045;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
-  .pixel { font-family: "Press Start 2P", monospace; }
+  /* ---------- reveal animation ---------- */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease);}
+  .reveal.in-view{opacity:1;transform:translateY(0);}
+  .reveal-delay-1{transition-delay:.08s;}
+  .reveal-delay-2{transition-delay:.16s;}
+  .reveal-delay-3{transition-delay:.24s;}
+  .reveal-delay-4{transition-delay:.32s;}
+
+  /* ---------- placeholder image blocks ---------- */
+  .ph{
+    position:relative;overflow:hidden;background:
+      linear-gradient(135deg,#23262e 0%,#181a20 60%);
+    border:1px solid var(--line);
+  }
+  .ph::before{
+    content:"";position:absolute;inset:0;
+    background-image:
+      repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0px,rgba(255,255,255,.035) 1px,transparent 1px,transparent 32px),
+      repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0px,rgba(255,255,255,.035) 1px,transparent 1px,transparent 32px);
+  }
+  .ph::after{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(circle at 30% 20%,rgba(255,90,31,.14),transparent 55%);
+  }
+  .ph .ph-icon{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    opacity:.5;
+  }
+  .ph .ph-icon svg{width:34%;height:34%;stroke:var(--steel);fill:none;stroke-width:1;}
+  .ph .ph-label{
+    position:absolute;left:16px;bottom:14px;
+    font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--steel);
+    background:rgba(20,22,26,.7);padding:5px 10px;border:1px solid var(--line);
+  }
+  .ph .corner{position:absolute;width:14px;height:14px;border:1px solid var(--orange);opacity:.7;}
+  .ph .corner.tl{top:10px;left:10px;border-right:none;border-bottom:none;}
+  .ph .corner.br{bottom:10px;right:10px;border-left:none;border-top:none;}
 
   /* ---------- Nav ---------- */
-  header {
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    background: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(8px);
-    border-bottom: 2px solid var(--ink);
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:200;
+    padding:22px 0;
+    transition:padding .35s var(--ease),background .35s var(--ease),box-shadow .35s var(--ease);
   }
-
-  .nav {
-    max-width: 1120px;
-    margin: 0 auto;
-    padding: 16px 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
+  header.scrolled{
+    padding:12px 0;
+    background:rgba(20,22,26,.86);
+    backdrop-filter:blur(14px) saturate(140%);
+    box-shadow:0 1px 0 var(--line);
   }
-
-  .logo {
-    font-family: "Press Start 2P", monospace;
-    font-size: 14px;
-    color: var(--ink);
-    text-decoration: none;
-    letter-spacing: 1px;
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:24px;}
+  .logo{display:flex;align-items:center;gap:10px;font-family:"Barlow Condensed";font-weight:800;font-size:22px;letter-spacing:.02em;text-transform:uppercase;}
+  .logo .mark{
+    width:34px;height:34px;border:2px solid var(--orange);border-radius:2px;
+    display:flex;align-items:center;justify-content:center;position:relative;flex-shrink:0;
   }
-  .logo span { color: var(--orange); }
+  .logo .mark::before,.logo .mark::after{content:"";position:absolute;border-radius:50%;}
+  .logo .mark::before{width:16px;height:16px;border:2px solid var(--orange);}
+  .logo .mark::after{width:4px;height:4px;background:var(--orange);}
+  .logo small{display:block;font-family:"IBM Plex Mono";font-size:9px;letter-spacing:.14em;color:var(--steel);text-transform:uppercase;font-weight:500;}
 
-  .nav-links { display: flex; gap: 28px; align-items: center; }
-  .nav-links a {
-    color: var(--steel);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 15px;
-    transition: color 0.15s;
+  .nav-links{display:flex;align-items:center;gap:34px;}
+  .nav-links a{
+    font-family:"IBM Plex Mono";font-size:13px;letter-spacing:.04em;text-transform:uppercase;
+    color:var(--off-white);position:relative;padding:4px 0;
   }
-  .nav-links a:hover { color: var(--ink); }
-
-  .btn {
-    display: inline-block;
-    font-family: "Press Start 2P", monospace;
-    font-size: 12px;
-    text-decoration: none;
-    padding: 14px 22px;
-    color: #fff;
-    background: var(--orange);
-    border: 2px solid var(--ink);
-    box-shadow: 4px 4px 0 var(--ink);
-    transition: transform 0.1s, box-shadow 0.1s;
+  .nav-links a::after{
+    content:"";position:absolute;left:0;bottom:-2px;height:1px;width:0;background:var(--orange);
+    transition:width .3s var(--ease);
   }
-  .btn:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--ink); }
-  .btn:active { transform: translate(4px, 4px); box-shadow: 0 0 0 var(--ink); }
+  .nav-links a:hover::after{width:100%;}
 
-  .btn.ghost {
-    background: #fff;
-    color: var(--ink);
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:13px 24px;font-family:"IBM Plex Mono";font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;
+    border-radius:var(--radius);transition:transform .25s var(--ease),box-shadow .25s var(--ease),background .25s var(--ease);
+    white-space:nowrap;
   }
+  .btn-primary{background:var(--orange);color:#161616;}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 24px -8px rgba(255,90,31,.55);}
+  .btn-outline{background:transparent;color:var(--off-white);border:1px solid var(--line-light);}
+  .btn-outline:hover{border-color:var(--orange);color:var(--orange);transform:translateY(-2px);}
+  .btn-dark{background:var(--charcoal);color:var(--off-white);border:1px solid var(--steel-dark);}
+  .btn-dark:hover{border-color:var(--orange);transform:translateY(-2px);}
 
-  .nav .btn { padding: 10px 16px; font-size: 10px; }
+  .nav-cta{display:none;}
+  @media(min-width:1080px){.nav-cta{display:inline-flex;}}
+
+  .burger{display:flex;flex-direction:column;gap:5px;width:26px;background:none;padding:4px;}
+  .burger span{height:2px;width:100%;background:var(--off-white);}
+  @media(min-width:1080px){.burger{display:none;}}
+  .nav-links{display:none;}
+  @media(min-width:1080px){.nav-links{display:flex;}}
+
+  .mobile-menu{
+    position:fixed;inset:0;z-index:190;background:var(--charcoal-2);
+    display:flex;flex-direction:column;justify-content:center;gap:28px;padding:32px;
+    transform:translateY(-100%);transition:transform .4s var(--ease);
+  }
+  .mobile-menu.open{transform:translateY(0);}
+  .mobile-menu a{font-family:"Barlow Condensed";font-size:32px;text-transform:uppercase;font-weight:700;}
 
   /* ---------- Hero ---------- */
-  .hero {
-    position: relative;
-    overflow: hidden;
+  .hero{
+    min-height:100vh;display:flex;align-items:flex-end;position:relative;
+    padding-top:120px;
+  }
+  .hero-media{position:absolute;inset:0;overflow:hidden;z-index:0;}
+  .hero-media .ph{position:absolute;inset:-6% ;width:112%;height:112%;}
+  .hero-media .ph-icon svg{width:22%;height:22%;}
+  .hero-gradient{
+    position:absolute;inset:0;z-index:1;
     background:
-      linear-gradient(var(--line) 1px, transparent 1px),
-      linear-gradient(90deg, var(--line) 1px, transparent 1px);
-    background-size: 40px 40px;
-    background-color: var(--paper);
+      linear-gradient(180deg,rgba(20,22,26,.35) 0%,rgba(20,22,26,.55) 45%,rgba(20,22,26,.96) 100%),
+      linear-gradient(90deg,rgba(20,22,26,.75) 0%,rgba(20,22,26,.15) 55%);
+  }
+  .hero-content{position:relative;z-index:2;width:100%;padding-bottom:88px;}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:"IBM Plex Mono";font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--orange);margin-bottom:22px;
+  }
+  .eyebrow::before{content:"";width:26px;height:1px;background:var(--orange);}
+  .hero h1{
+    font-size:clamp(2.6rem,7.2vw,6.2rem);
+    max-width:15ch;color:var(--white);
+    margin-bottom:26px;
+  }
+  .hero h1 .line{display:block;overflow:hidden;}
+  .hero h1 .line span{
+    display:inline-block;transform:translateY(110%);opacity:0;
+    transition:transform .9s var(--ease),opacity .9s var(--ease);
+  }
+  .hero h1.animate .line span{transform:translateY(0);opacity:1;}
+  .hero h1 .line:nth-child(1) span{transition-delay:.15s;}
+  .hero h1 .line:nth-child(2) span{transition-delay:.32s;}
+  .hero h1 .line:nth-child(3) span{transition-delay:.49s;}
+  .hero h1 .accent{color:var(--orange);}
+
+  .hero p.lead{
+    font-size:18px;max-width:46ch;color:#d9d7cf;margin-bottom:38px;
+    opacity:0;transform:translateY(16px);transition:opacity .8s var(--ease) .7s,transform .8s var(--ease) .7s;
+  }
+  .hero.animate p.lead{opacity:1;transform:translateY(0);}
+  .hero-ctas{
+    display:flex;flex-wrap:wrap;gap:16px;
+    opacity:0;transform:translateY(16px);transition:opacity .8s var(--ease) .85s,transform .8s var(--ease) .85s;
+  }
+  .hero.animate .hero-ctas{opacity:1;transform:translateY(0);}
+
+  .info-panel{
+    position:absolute;right:32px;bottom:110px;z-index:3;
+    background:rgba(20,22,26,.7);backdrop-filter:blur(10px);
+    border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 24px;width:260px;
+    opacity:0;transform:translateY(16px);transition:opacity .8s var(--ease) 1s,transform .8s var(--ease) 1s;
+  }
+  .hero.animate .info-panel{opacity:1;transform:translateY(0);}
+  .info-panel .row{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid var(--line);font-size:13px;color:#dfddd5;}
+  .info-panel .row:last-child{border-bottom:none;}
+  .info-panel .dot{width:6px;height:6px;background:var(--orange);border-radius:50%;flex-shrink:0;}
+  @media(max-width:960px){.info-panel{display:none;}}
+
+  .scroll-indicator{
+    position:absolute;left:32px;bottom:36px;z-index:3;
+    display:flex;align-items:center;gap:12px;color:var(--steel);
+    font-family:"IBM Plex Mono";font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  }
+  .scroll-indicator .bar{width:1px;height:34px;background:var(--line-light);position:relative;overflow:hidden;}
+  .scroll-indicator .bar::after{
+    content:"";position:absolute;top:-100%;left:0;width:100%;height:100%;background:var(--orange);
+    animation:scrollmove 1.8s ease-in-out infinite;
+  }
+  @keyframes scrollmove{0%{top:-100%;}50%{top:0;}100%{top:100%;}}
+
+  /* ---------- Ticker ---------- */
+  .ticker-wrap{
+    background:var(--charcoal-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    overflow:hidden;padding:16px 0;position:relative;z-index:3;
+  }
+  .ticker-track{display:flex;width:max-content;animation:ticker 34s linear infinite;}
+  .ticker-wrap:hover .ticker-track{animation-play-state:paused;}
+  .ticker-track span{
+    font-family:"Barlow Condensed";font-weight:600;font-size:19px;text-transform:uppercase;
+    color:var(--steel);padding:0 28px;white-space:nowrap;display:flex;align-items:center;gap:28px;letter-spacing:.03em;
+  }
+  .ticker-track span::after{content:"◆";color:var(--orange);font-size:9px;}
+  @keyframes ticker{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  /* ---------- section headers ---------- */
+  .section-pad{padding:120px 0;}
+  .section-head{max-width:780px;margin-bottom:64px;}
+  .kicker{
+    font-family:"IBM Plex Mono";font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--orange);display:flex;align-items:center;gap:10px;margin-bottom:18px;
+  }
+  .kicker::before{content:"";width:26px;height:1px;background:var(--orange);}
+  .section-head h2{font-size:clamp(2rem,4.2vw,3.4rem);color:var(--white);margin-bottom:18px;}
+  .section-head p{font-size:17px;color:var(--steel);max-width:60ch;}
+  .on-light .section-head h2{color:var(--charcoal);}
+  .on-light .kicker{color:var(--orange-dim);}
+  .on-light .section-head p{color:var(--steel-dark);}
+
+  /* ---------- Expertise cards ---------- */
+  .expertise-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+  @media(max-width:900px){.expertise-grid{grid-template-columns:1fr;}}
+  .ecard{
+    position:relative;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
+    background:var(--charcoal-2);transition:transform .5s var(--ease),border-color .5s var(--ease);
+  }
+  .ecard:hover{transform:translateY(-10px);border-color:var(--orange);}
+  .ecard .ph{height:280px;}
+  .ecard-body{padding:26px 26px 30px;}
+  .ecard-num{font-family:"IBM Plex Mono";font-size:12px;color:var(--orange);letter-spacing:.1em;margin-bottom:10px;display:block;}
+  .ecard h3{font-size:28px;color:var(--white);margin-bottom:12px;}
+  .ecard p{font-size:14.5px;color:var(--steel);max-height:0;opacity:0;overflow:hidden;transition:max-height .5s var(--ease),opacity .4s var(--ease) .05s,margin .5s var(--ease);}
+  .ecard:hover p{max-height:140px;opacity:1;margin-top:4px;}
+  .ecard .line-static{font-size:14.5px;color:var(--steel);}
+  .ecard:hover .line-static{display:none;}
+
+  /* ---------- Markets ---------- */
+  .markets-section{background:var(--charcoal-2);position:relative;overflow:hidden;}
+  .markets-section::before{
+    content:"";position:absolute;top:-10%;right:-14%;width:60%;height:130%;
+    background-image:repeating-linear-gradient(45deg,rgba(255,90,31,.05) 0,rgba(255,90,31,.05) 1px,transparent 1px,transparent 26px);
+    pointer-events:none;
+  }
+  .markets-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:0;align-items:center;position:relative;}
+  @media(max-width:900px){.markets-grid{grid-template-columns:1fr;}}
+  .market-list{display:flex;flex-direction:column;}
+  .market-item{
+    display:flex;align-items:center;justify-content:space-between;gap:14px;
+    padding:19px 4px;border-bottom:1px solid var(--line);cursor:pointer;
+    transition:padding .3s var(--ease),color .3s var(--ease);
+  }
+  .market-item span.mi-label{font-family:"Barlow Condensed";font-weight:700;font-size:21px;text-transform:uppercase;color:var(--steel);transition:color .3s var(--ease);}
+  .market-item .mi-idx{font-family:"IBM Plex Mono";font-size:12px;color:var(--steel-dark);}
+  .market-item:hover,.market-item.active{padding-left:16px;}
+  .market-item:hover span.mi-label,.market-item.active span.mi-label{color:var(--orange);}
+  .market-item.active .mi-idx{color:var(--orange);}
+
+  .market-visual{position:relative;height:520px;margin:-40px -40px -40px 20px;}
+  @media(max-width:900px){.market-visual{margin:40px 0 0;height:340px;}}
+  .market-visual .ph{position:absolute;inset:0;opacity:0;transition:opacity .8s var(--ease);}
+  .market-visual .ph.active{opacity:1;}
+
+  /* ---------- value chain ---------- */
+  .chain-wrap{position:relative;padding-top:40px;}
+  .chain{display:flex;justify-content:space-between;position:relative;gap:10px;}
+  .chain::before{
+    content:"";position:absolute;top:26px;left:5%;right:5%;height:1px;background:var(--line-light);
+    z-index:0;
+  }
+  .chain::after{
+    content:"";position:absolute;top:26px;left:5%;height:1px;background:var(--orange);
+    width:0;z-index:1;transition:width 1.6s var(--ease);
+  }
+  .chain.in-view::after{width:90%;}
+  .chain-step{position:relative;z-index:2;flex:1;text-align:center;}
+  .chain-dot{
+    width:52px;height:52px;border-radius:50%;background:var(--charcoal);border:2px solid var(--line-light);
+    display:flex;align-items:center;justify-content:center;margin:0 auto 18px;
+    font-family:"IBM Plex Mono";font-weight:600;color:var(--steel-dark);transition:all .5s var(--ease);
+  }
+  .chain.in-view .chain-dot{border-color:var(--orange);color:var(--orange);background:var(--charcoal-2);}
+  .chain-step h4{font-size:16px;color:var(--charcoal);letter-spacing:.02em;}
+  .chain-step p{font-size:12.5px;color:var(--steel-dark);margin-top:6px;}
+  @media(max-width:860px){
+    .chain{flex-direction:column;align-items:flex-start;gap:34px;padding-left:26px;}
+    .chain::before{top:0;bottom:0;left:26px;width:1px;height:100%;right:auto;}
+    .chain::after{top:0;left:26px;width:1px;height:0;}
+    .chain.in-view::after{height:92%;width:1px;}
+    .chain-step{display:flex;align-items:center;gap:18px;text-align:left;}
+    .chain-dot{margin:0;flex-shrink:0;transform:translateX(-38px);}
+    .chain-step h4,.chain-step p{margin-left:-20px;}
   }
 
-  .hero-inner {
-    max-width: 1120px;
-    margin: 0 auto;
-    padding: 64px 24px 0;
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    align-items: end;
-    gap: 24px;
+  /* ---------- statement ---------- */
+  .statement{
+    position:relative;min-height:70vh;display:flex;align-items:center;justify-content:center;
+    overflow:hidden;text-align:center;
+  }
+  .statement .ph{position:absolute;inset:0;z-index:0;}
+  .statement .ph-icon svg{animation:zoomicon 16s ease-in-out infinite alternate;}
+  @keyframes zoomicon{from{transform:scale(1);}to{transform:scale(1.12);}}
+  .statement-overlay{position:absolute;inset:0;background:rgba(15,16,19,.72);z-index:1;}
+  .statement blockquote{
+    position:relative;z-index:2;max-width:1000px;padding:0 32px;
+    font-family:"Barlow Condensed";font-weight:700;text-transform:uppercase;
+    font-size:clamp(1.8rem,5.2vw,4rem);color:var(--white);line-height:1.12;
+  }
+  .statement blockquote .q{color:var(--orange);}
+
+  /* ---------- why section ---------- */
+  .why-section{background:var(--off-white);color:var(--charcoal);}
+  .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+  @media(max-width:960px){.why-grid{grid-template-columns:1fr 1fr;}}
+  @media(max-width:600px){.why-grid{grid-template-columns:1fr;}}
+  .why-card{
+    background:var(--white);border:1px solid #e4e1d8;border-radius:var(--radius);
+    padding:30px 24px;transition:transform .4s var(--ease),box-shadow .4s var(--ease);
+  }
+  .why-card:nth-child(2){transform:translateY(24px);}
+  .why-card:nth-child(4){transform:translateY(24px);}
+  @media(max-width:960px){.why-card:nth-child(2),.why-card:nth-child(4){transform:none;}}
+  .why-card:hover{box-shadow:0 20px 40px -20px rgba(20,20,20,.2);transform:translateY(-6px);}
+  .why-card:nth-child(2):hover,.why-card:nth-child(4):hover{transform:translateY(18px);}
+  .why-icon{
+    width:44px;height:44px;border:2px solid var(--orange);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;margin-bottom:20px;
+  }
+  .why-icon svg{width:20px;height:20px;stroke:var(--orange);fill:none;stroke-width:1.6;}
+  .why-card h3{font-size:19px;text-transform:none;letter-spacing:0;margin-bottom:10px;font-weight:700;}
+  .why-card p{font-size:14px;color:var(--steel-dark);margin-bottom:18px;}
+  .why-tag{
+    font-family:"IBM Plex Mono";font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--orange-dim);border-top:1px dashed #d8d4c8;padding-top:14px;
   }
 
-  .hero-copy { padding-bottom: 72px; }
-
-  .kicker {
-    display: inline-block;
-    font-family: "Press Start 2P", monospace;
-    font-size: 10px;
-    color: var(--orange-dark);
-    background: #fff;
-    border: 2px solid var(--ink);
-    padding: 8px 12px;
-    margin-bottom: 24px;
-    box-shadow: 3px 3px 0 var(--ink);
+  /* ---------- team ---------- */
+  .team-section{background:var(--charcoal);}
+  .team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;}
+  @media(max-width:960px){
+    .team-grid{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:14px;margin:0 -32px;padding-left:32px;padding-right:32px;}
+    .team-grid .tcard{min-width:78%;scroll-snap-align:start;}
   }
-
-  h1.pixel {
-    font-size: clamp(26px, 4vw, 42px);
-    line-height: 1.5;
-    margin-bottom: 20px;
+  .tcard{
+    border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--charcoal-2);
+    transition:transform .4s var(--ease),border-color .4s var(--ease);
   }
-  h1 .accent { color: var(--orange); }
-
-  .hero-copy p {
-    font-size: 18px;
-    color: var(--steel);
-    max-width: 46ch;
-    margin-bottom: 32px;
+  .tcard:hover{transform:translateY(-8px);border-color:var(--orange);}
+  .tcard .ph{height:300px;}
+  .tcard .ph-icon svg{transition:transform .6s var(--ease);}
+  .tcard:hover .ph-icon svg{transform:scale(1.12);}
+  .tcard-body{padding:22px 22px 24px;}
+  .tcard h3{font-size:23px;color:var(--white);margin-bottom:4px;text-transform:none;letter-spacing:0;}
+  .tcard .role{font-family:"IBM Plex Mono";font-size:11.5px;color:var(--orange);text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px;}
+  .tcard .focus{font-size:13px;color:var(--steel);margin-bottom:18px;}
+  .tcard .focus b{color:#cfcdc5;font-weight:600;}
+  .tcard-actions{display:flex;align-items:center;gap:12px;}
+  .icon-btn{
+    width:34px;height:34px;border-radius:50%;border:1px solid var(--line-light);
+    display:flex;align-items:center;justify-content:center;transition:border-color .3s,color .3s;color:var(--steel);
   }
-
-  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
-
-  .hero-art {
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
+  .icon-btn:hover{border-color:var(--orange);color:var(--orange);}
+  .icon-btn svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.6;}
+  .contact-btn{
+    font-family:"IBM Plex Mono";font-size:11px;text-transform:uppercase;letter-spacing:.06em;
+    color:var(--off-white);border:1px solid var(--line-light);border-radius:20px;padding:8px 16px;
+    transition:border-color .3s,color .3s;
   }
+  .contact-btn:hover{border-color:var(--orange);color:var(--orange);}
 
-  .hero-art img {
-    width: 100%;
-    max-width: 360px;
-    display: block;
-    filter: drop-shadow(0 6px 0 rgba(29, 35, 51, 0.12));
+  /* ---------- final CTA ---------- */
+  .final-cta{background:var(--charcoal-2);border-top:1px solid var(--line);}
+  .cta-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:64px;align-items:start;}
+  @media(max-width:960px){.cta-grid{grid-template-columns:1fr;gap:48px;}}
+  .final-cta h2{font-size:clamp(2.2rem,5vw,3.6rem);color:var(--white);margin-bottom:20px;}
+  .final-cta p{color:var(--steel);font-size:16.5px;max-width:52ch;margin-bottom:32px;}
+  .cta-buttons{display:flex;flex-wrap:wrap;gap:16px;}
+
+  .form-panel{
+    background:var(--charcoal);border:1px solid var(--line);border-radius:var(--radius);padding:32px;
   }
-
-  /* ground strip under hero */
-  .ground {
-    height: 14px;
-    background: var(--ink);
-    background-image: repeating-linear-gradient(
-      90deg,
-      var(--ink) 0 28px,
-      var(--orange) 28px 56px
-    );
+  .form-panel h3{font-size:20px;text-transform:none;letter-spacing:0;color:var(--white);margin-bottom:20px;}
+  .field{margin-bottom:16px;display:flex;flex-direction:column;gap:7px;}
+  .field label{font-family:"IBM Plex Mono";font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--steel);}
+  .field input,.field select,.field textarea{
+    background:var(--charcoal-3);border:1px solid var(--line);border-radius:4px;color:var(--off-white);
+    padding:12px 14px;font-family:"Inter";font-size:14px;transition:border-color .3s;
   }
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--orange);}
+  .form-panel .btn-primary{width:100%;justify-content:center;margin-top:6px;}
+  .form-note{font-size:12px;color:var(--steel-dark);margin-top:12px;text-align:center;}
 
-  /* ---------- Stats ---------- */
-  .stats {
-    background: var(--navy);
-    color: #fff;
-    padding: 48px 24px;
+  /* ---------- footer ---------- */
+  footer{background:var(--charcoal);border-top:1px solid var(--line);padding:64px 0 28px;}
+  .footer-top{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:40px;margin-bottom:52px;}
+  @media(max-width:860px){.footer-top{grid-template-columns:1fr 1fr;}}
+  @media(max-width:520px){.footer-top{grid-template-columns:1fr;}}
+  .footer-brand p{color:var(--steel);font-size:14px;margin-top:14px;max-width:32ch;}
+  .footer-col h5{font-family:"IBM Plex Mono";font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--steel);margin-bottom:16px;}
+  .footer-col a,.footer-col li{display:block;color:#c9c7bf;font-size:14px;margin-bottom:10px;}
+  .footer-col a:hover{color:var(--orange);}
+  .footer-bottom{
+    border-top:1px solid var(--line);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;
+    font-size:12.5px;color:var(--steel-dark);
   }
-  .stats-inner {
-    max-width: 1120px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 32px;
-    text-align: center;
-  }
-  .stat .num {
-    font-family: "Press Start 2P", monospace;
-    font-size: 24px;
-    color: var(--orange);
-    display: block;
-    margin-bottom: 12px;
-  }
-  .stat .label { color: #aeb6c8; font-weight: 500; font-size: 15px; }
-
-  /* ---------- Sections ---------- */
-  section { padding: 88px 24px; }
-  .wrap { max-width: 1120px; margin: 0 auto; }
-
-  .section-head { max-width: 640px; margin-bottom: 48px; }
-  .section-head h2 {
-    font-family: "Press Start 2P", monospace;
-    font-size: clamp(18px, 2.5vw, 26px);
-    line-height: 1.6;
-    margin-bottom: 16px;
-  }
-  .section-head p { color: var(--steel); font-size: 17px; }
-
-  .alt { background: var(--paper-dim); }
-
-  .cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+  .footer-tagline{
+    text-align:center;font-family:"Barlow Condensed";text-transform:uppercase;font-weight:700;letter-spacing:.04em;
+    color:var(--steel);font-size:15px;margin-bottom:40px;padding-bottom:40px;border-bottom:1px solid var(--line);
   }
 
-  .card {
-    background: #fff;
-    border: 2px solid var(--ink);
-    box-shadow: 6px 6px 0 var(--ink);
-    padding: 28px;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  .skip-link{
+    position:absolute;left:-999px;top:0;background:var(--orange);color:#161616;padding:12px 20px;z-index:1000;
+    font-family:"IBM Plex Mono";font-size:13px;
   }
-  .card:hover {
-    transform: translate(-4px, -4px);
-    box-shadow: 10px 10px 0 var(--orange);
-  }
-  .card .icon {
-    font-size: 28px;
-    display: inline-block;
-    margin-bottom: 16px;
-    background: var(--paper-dim);
-    border: 2px solid var(--ink);
-    padding: 8px 12px;
-    transition: transform 0.15s ease;
-  }
-  .card:hover .icon {
-    transform: scale(1.15) rotate(-6deg);
-  }
-  .card h3 { font-size: 19px; margin-bottom: 10px; }
-  .card p { color: var(--steel); font-size: 15px; }
+  .skip-link:focus{left:16px;top:16px;}
 
-  /* ---------- Roles marquee-style list ---------- */
-  .roles {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-  .role-tag {
-    font-family: "Press Start 2P", monospace;
-    font-size: 10px;
-    padding: 12px 16px;
-    background: #fff;
-    border: 2px solid var(--ink);
-    box-shadow: 3px 3px 0 var(--ink);
-  }
-  .role-tag.hot { background: var(--orange); color: #fff; }
-
-  /* ---------- CTA ---------- */
-  .cta {
-    background: var(--navy);
-    color: #fff;
-    text-align: center;
-  }
-  .cta h2 {
-    font-family: "Press Start 2P", monospace;
-    font-size: clamp(18px, 2.5vw, 26px);
-    line-height: 1.6;
-    margin-bottom: 16px;
-  }
-  .cta h2 .accent { color: var(--orange); }
-  .cta p { color: #aeb6c8; font-size: 17px; max-width: 52ch; margin: 0 auto 36px; }
-
-  /* ---------- Footer ---------- */
-  footer {
-    border-top: 2px solid var(--ink);
-    padding: 28px 24px;
-    text-align: center;
-    color: var(--steel);
-    font-size: 14px;
+  @media(prefers-reduced-motion:reduce){
+    *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important;}
   }
 
-  /* ---------- Responsive ---------- */
-  @media (max-width: 860px) {
-    .hero-inner { grid-template-columns: 1fr; }
-    .hero-copy { padding-bottom: 32px; text-align: center; }
-    .hero-copy p { margin-left: auto; margin-right: auto; }
-    .hero-actions { justify-content: center; }
-    .hero-art img { max-width: 320px; }
-    .stats-inner { grid-template-columns: repeat(2, 1fr); }
-    .cards { grid-template-columns: 1fr; }
-    .nav-links a:not(.btn) { display: none; }
+  @media(max-width:640px){
+    .section-pad{padding:80px 0;}
+    .wrap{padding:0 20px;}
   }
 </style>
 </head>
 <body>
+<div class="grain" aria-hidden="true"></div>
 
-<header>
-  <nav class="nav">
-    <a class="logo" href="#">FORGE<span>TALENT</span></a>
-    <div class="nav-links">
-      <a href="#services">Services</a>
+<a href="#main" class="skip-link">Skip to content</a>
+
+<header id="siteHeader">
+  <div class="wrap nav">
+    <a href="#top" class="logo" aria-label="Darwin Industrial home">
+      <span class="mark" aria-hidden="true"></span>
+      <span>Darwin<br><small>Industrial</small></span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#expertise">Expertise</a>
+      <a href="#markets">Markets</a>
       <a href="#roles">Roles</a>
-      <a href="#contact">Contact</a>
-      <a class="btn" href="#contact">HIRE NOW</a>
-    </div>
-  </nav>
+      <a href="#about">About</a>
+      <a href="#team">Team</a>
+    </nav>
+    <a href="#contact" class="btn btn-primary nav-cta">Discuss Your Hiring Needs</a>
+    <button class="burger" id="burgerBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </header>
 
-<section class="hero" style="padding: 0;">
-  <div class="hero-inner">
-    <div class="hero-copy">
-      <span class="kicker">★ SKILLED TRADES RECRUITMENT</span>
-      <h1 class="pixel">PLAYER 1:<br>YOUR NEXT <span class="accent">WELDER</span></h1>
-      <p>We place certified welders, fabricators and machinists into manufacturing teams that can't afford downtime. Vetted, coded, and ready to clock in.</p>
-      <div class="hero-actions">
-        <a class="btn" href="#contact">FIND TALENT</a>
-        <a class="btn ghost" href="#roles">VIEW ROLES</a>
-      </div>
-    </div>
-    <div class="hero-art">
-      <img src="assets/hero-welder-t.png" alt="Pixel art welder character with flip-up welding helmet and orange gloves, arms crossed">
-    </div>
-  </div>
-  <div class="ground"></div>
-</section>
-
-<div class="stats">
-  <div class="stats-inner">
-    <div class="stat"><span class="num">100+</span><span class="label">Placements made</span></div>
-    <div class="stat"><span class="num">48h</span><span class="label">Average shortlist time</span></div>
-    <div class="stat"><span class="num">92%</span><span class="label">12-month retention</span></div>
-    <div class="stat"><span class="num">100%</span><span class="label">Certs verified</span></div>
-  </div>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#expertise">Expertise</a>
+  <a href="#markets">Markets</a>
+  <a href="#roles">Roles</a>
+  <a href="#about">About</a>
+  <a href="#team">Team</a>
+  <a href="#contact" class="btn btn-primary" style="width:fit-content;margin-top:12px;">Discuss Your Hiring Needs</a>
 </div>
 
-<section id="services">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>HOW WE WORK</h2>
-      <p>No resume spam. No tyre-kickers. Just qualified tradespeople matched to your shop floor.</p>
-    </div>
-    <div class="cards">
-      <div class="card">
-        <span class="icon">🔍</span>
-        <h3>Sourced &amp; Screened</h3>
-        <p>Every candidate is interviewed, reference-checked and cert-verified before you ever see their name.</p>
-      </div>
-      <div class="card">
-        <span class="icon">⚡</span>
-        <h3>Fast Turnaround</h3>
-        <p>Shortlists in 48 hours for most coded welding and fabrication roles — because an empty bay costs money.</p>
-      </div>
-      <div class="card">
-        <span class="icon">🛡️</span>
-        <h3>Placement Guarantee</h3>
-        <p>If a hire doesn't work out in the first 12 weeks, we replace them free of charge. Simple as that.</p>
-      </div>
-    </div>
-  </div>
-</section>
+<main id="main">
 
-<section id="roles" class="alt">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>ROLES WE FILL</h2>
-      <p>From single coded-welder placements to full crew mobilisation.</p>
+  <!-- ===================== HERO ===================== -->
+  <section class="hero" id="top">
+    <div class="hero-media" id="heroParallax">
+      <div class="ph" role="img" aria-label="Placeholder: large centrifugal compressor train inside an industrial facility">
+        <div class="ph-icon" aria-hidden="true">
+          <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="34"/><circle cx="50" cy="50" r="6"/><path d="M50 16 L50 26 M50 74 L50 84 M16 50 L26 50 M74 50 L84 50 M27 27 L34 34 M66 66 L73 73 M73 27 L66 34 M34 66 L27 73"/></svg>
+        </div>
+      </div>
     </div>
-    <div class="roles">
-      <span class="role-tag hot">MIG / TIG WELDERS</span>
-      <span class="role-tag">CODED WELDERS</span>
-      <span class="role-tag">FABRICATORS</span>
-      <span class="role-tag">CNC MACHINISTS</span>
-      <span class="role-tag hot">PIPE WELDERS</span>
-      <span class="role-tag">SHEET METAL WORKERS</span>
-      <span class="role-tag">WELDING INSPECTORS</span>
-      <span class="role-tag">WORKSHOP SUPERVISORS</span>
-      <span class="role-tag">MAINTENANCE ENGINEERS</span>
-    </div>
-  </div>
-</section>
+    <div class="hero-gradient" aria-hidden="true"></div>
 
-<section id="contact" class="cta">
-  <div class="wrap">
-    <h2>READY TO <span class="accent">PRESS START</span>?</h2>
-    <p>Tell us what you need and we'll have a shortlist on your desk within two working days.</p>
-    <a class="btn" href="mailto:samueljames@forgetalentpartner.com">GET IN TOUCH</a>
+    <div class="wrap hero-content">
+      <div class="eyebrow">USA · Rotating Equipment Staffing</div>
+      <h1 id="heroHeadline">
+        <span class="line"><span>Specialist Talent for</span></span>
+        <span class="line"><span>Critical <span class="accent">Rotating</span></span></span>
+        <span class="line"><span>Equipment</span></span>
+      </h1>
+      <p class="lead">Darwin Industrial connects rotating-equipment businesses across the USA with specialist field service, engineering and commercial leadership talent.</p>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn btn-primary">Discuss Your Hiring Needs</a>
+        <a href="#expertise" class="btn btn-outline">Explore Our Expertise</a>
+      </div>
+    </div>
+
+    <div class="info-panel" aria-label="Key facts">
+      <div class="row"><span class="dot"></span>USA-wide talent network</div>
+      <div class="row"><span class="dot"></span>Rotating-equipment specialists</div>
+      <div class="row"><span class="dot"></span>Field service through leadership</div>
+    </div>
+
+    <div class="scroll-indicator" aria-hidden="true">
+      <span class="bar"></span> Scroll
+    </div>
+  </section>
+
+  <!-- ===================== TICKER ===================== -->
+  <div class="ticker-wrap" role="marquee" aria-label="Equipment categories">
+    <div class="ticker-track" id="tickerTrack">
+      <span>Pumps</span><span>Compressors</span><span>Turbines</span><span>Motors</span><span>Gas Engines</span><span>Mechanical Seals</span><span>Bearings</span><span>Gearboxes</span><span>Machinery Controls</span>
+      <span>Pumps</span><span>Compressors</span><span>Turbines</span><span>Motors</span><span>Gas Engines</span><span>Mechanical Seals</span><span>Bearings</span><span>Gearboxes</span><span>Machinery Controls</span>
+    </div>
   </div>
-</section>
+
+  <!-- ===================== EXPERTISE ===================== -->
+  <section class="section-pad" id="expertise">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="kicker">Our Expertise</div>
+        <h2>We Understand the Equipment—<br>Not Just the Job Title</h2>
+        <p>Our searches are built around equipment platforms, applications and technical work scopes. This allows us to identify professionals with genuinely relevant operating, engineering and aftermarket experience.</p>
+      </div>
+
+      <div class="expertise-grid" id="roles">
+        <article class="ecard reveal reveal-delay-1">
+          <div class="ph">
+            <div class="ph-icon" aria-hidden="true"><svg viewBox="0 0 100 100"><rect x="20" y="30" width="60" height="40" rx="2"/><circle cx="50" cy="50" r="12"/><path d="M20 44 L10 44 M20 56 L10 56 M80 44 L90 44 M80 56 L90 56"/></svg></div>
+            <span class="corner tl"></span><span class="corner br"></span>
+            <span class="ph-label">Placeholder — Field Service Engineer</span>
+          </div>
+          <div class="ecard-body">
+            <span class="ecard-num">01 / Field Service</span>
+            <h3>Field Service</h3>
+            <p class="line-static">Onsite technical talent, ready when equipment goes down.</p>
+            <p>Field Service Engineers, Service Technicians, Technical Field Advisors and Field Service Supervisors.</p>
+          </div>
+        </article>
+
+        <article class="ecard reveal reveal-delay-2">
+          <div class="ph">
+            <div class="ph-icon" aria-hidden="true"><svg viewBox="0 0 100 100"><path d="M15 70 L40 30 L60 55 L85 20"/><circle cx="40" cy="30" r="3"/><circle cx="60" cy="55" r="3"/><circle cx="85" cy="20" r="3"/><rect x="12" y="76" width="76" height="10"/></svg></div>
+            <span class="corner tl"></span><span class="corner br"></span>
+            <span class="ph-label">Placeholder — Rotor Engineering Review</span>
+          </div>
+          <div class="ecard-body">
+            <span class="ecard-num">02 / Engineering</span>
+            <h3>Engineering</h3>
+            <p class="line-static">Technical depth across design, reliability and repair.</p>
+            <p>Rotating Equipment Engineers, Reliability Engineers, Applications Engineers, Package Engineers, Commissioning Engineers and Repair Engineers.</p>
+          </div>
+        </article>
+
+        <article class="ecard reveal reveal-delay-3">
+          <div class="ph">
+            <div class="ph-icon" aria-hidden="true"><svg viewBox="0 0 100 100"><circle cx="30" cy="65" r="10"/><circle cx="55" cy="45" r="10"/><circle cx="78" cy="65" r="10"/><path d="M30 55 L55 35 M55 35 L78 55"/></svg></div>
+            <span class="corner tl"></span><span class="corner br"></span>
+            <span class="ph-label">Placeholder — Leadership Team, Service Facility</span>
+          </div>
+          <div class="ecard-body">
+            <span class="ecard-num">03 / Commercial</span>
+            <h3>Commercial Leadership</h3>
+            <p class="line-static">Growth-minded leaders for aftermarket and operations.</p>
+            <p>Aftermarket Sales Managers, Regional Sales Managers, Service Managers, Operations Managers and General Managers.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== MARKETS ===================== -->
+  <section class="section-pad markets-section" id="markets">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="kicker">Equipment Markets We Cover</div>
+        <h2>Equipment Markets<br>We Cover</h2>
+      </div>
+
+      <div class="markets-grid reveal">
+        <div class="market-list" id="marketList" role="tablist" aria-label="Equipment markets">
+          <div class="market-item active" role="tab" aria-selected="true" data-target="0">
+            <span class="mi-label">Pumps and mechanical seals</span><span class="mi-idx">01</span>
+          </div>
+          <div class="market-item" role="tab" aria-selected="false" data-target="1">
+            <span class="mi-label">Centrifugal compressors</span><span class="mi-idx">02</span>
+          </div>
+          <div class="market-item" role="tab" aria-selected="false" data-target="2">
+            <span class="mi-label">Reciprocating compressors</span><span class="mi-idx">03</span>
+          </div>
+          <div class="market-item" role="tab" aria-selected="false" data-target="3">
+            <span class="mi-label">Industrial air compressors</span><span class="mi-idx">04</span>
+          </div>
+          <div class="market-item" role="tab" aria-selected="false" data-target="4">
+            <span class="mi-label">Gas and steam turbines</span><span class="mi-idx">05</span>
+          </div>
+          <div class="market-item" role="tab" aria-selected="false" data-target="5">
+            <span class="mi-label">Gas engines and compressor packages</span><span class="mi-idx">06</span>
+          </div>
+          <div class="market-item" role="tab" aria-selected="false" data-target="6">
+            <span class="mi-label">Motors, bearings and gearboxes</span><span class="mi-idx">07</span>
+          </div>
+          <div class="market-item" role="tab" aria-selected="false" data-target="7">
+            <span class="mi-label">Condition monitoring and machinery controls</span><span class="mi-idx">08</span>
+          </div>
+        </div>
+
+        <div class="market-visual" id="marketVisual" aria-live="polite">
+          <div class="ph active" data-slide="0"><div class="ph-icon"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="30"/><rect x="70" y="42" width="24" height="16"/><circle cx="50" cy="50" r="5"/></svg></div><span class="corner tl"></span><span class="corner br"></span><span class="ph-label">API Centrifugal Pump</span></div>
+          <div class="ph" data-slide="1"><div class="ph-icon"><svg viewBox="0 0 100 100"><rect x="10" y="45" width="30" height="14"/><circle cx="55" cy="52" r="20"/><rect x="78" y="45" width="16" height="14"/></svg></div><span class="corner tl"></span><span class="corner br"></span><span class="ph-label">Centrifugal Compressor Train</span></div>
+          <div class="ph" data-slide="2"><div class="ph-icon"><svg viewBox="0 0 100 100"><rect x="15" y="40" width="70" height="26" rx="2"/><path d="M15 53 L94 53 M30 40 L30 66 M50 40 L50 66 M70 40 L70 66"/></svg></div><span class="corner tl"></span><span class="corner br"></span><span class="ph-label">Reciprocating Compressor</span></div>
+          <div class="ph" data-slide="3"><div class="ph-icon"><svg viewBox="0 0 100 100"><path d="M20 30 L20 70 L45 55 Z"/><rect x="45" y="46" width="35" height="18"/></svg></div><span class="corner tl"></span><span class="corner br"></span><span class="ph-label">Industrial Gas Turbine</span></div>
+          <div class="ph" data-slide="4"><div class="ph-icon"><svg viewBox="0 0 100 100"><line x1="10" y1="50" x2="90" y2="50"/><circle cx="35" cy="50" r="14"/><circle cx="65" cy="50" r="9"/></svg></div><span class="corner tl"></span><span class="corner br"></span><span class="ph-label">Rotor and Bearing Assembly</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== VALUE CHAIN ===================== -->
+  <section class="section-pad on-light" style="background:var(--off-white);color:var(--charcoal);">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="kicker">Companies We Support</div>
+        <h2>Supporting the Complete<br>Rotating Equipment Value Chain</h2>
+        <p>From equipment manufacturing and aftermarket service to plant reliability and operations, we understand where specialist talent moves throughout the industry.</p>
+      </div>
+
+      <div class="chain-wrap reveal">
+        <div class="chain" id="valueChain">
+          <div class="chain-step"><div class="chain-dot">01</div><h4>OEMs</h4><p>Equipment manufacturers</p></div>
+          <div class="chain-step"><div class="chain-dot">02</div><h4>Distributors</h4><p>Sales &amp; channel partners</p></div>
+          <div class="chain-step"><div class="chain-dot">03</div><h4>Aftermarket Service &amp; Repair</h4><p>Overhaul &amp; field support</p></div>
+          <div class="chain-step"><div class="chain-dot">04</div><h4>EPCs, Integrators &amp; Operators</h4><p>Project delivery</p></div>
+          <div class="chain-step"><div class="chain-dot">05</div><h4>Industrial End Users</h4><p>Plant reliability &amp; ops</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== STATEMENT ===================== -->
+  <section class="statement">
+    <div class="ph" aria-hidden="true">
+      <div class="ph-icon"><svg viewBox="0 0 100 100"><path d="M50 10 L54 45 L88 50 L54 55 L50 90 L46 55 L12 50 L46 45 Z"/></svg></div>
+    </div>
+    <div class="statement-overlay"></div>
+    <blockquote class="reveal">
+      <span class="q">“</span>We recruit by equipment platform and work scope—not simply by job title.<span class="q">”</span>
+    </blockquote>
+  </section>
+
+  <!-- ===================== WHY ===================== -->
+  <section class="section-pad why-section on-light" id="about">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="kicker">Why Darwin Industrial</div>
+        <h2>Why Darwin Industrial</h2>
+      </div>
+
+      <div class="why-grid">
+        <div class="why-card reveal reveal-delay-1">
+          <div class="why-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+          <h3>Specialist Market Knowledge</h3>
+          <p>Focused recruitment expertise across rotating equipment and industrial services.</p>
+          <div class="why-tag">Specialist Market</div>
+        </div>
+        <div class="why-card reveal reveal-delay-2">
+          <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M4 20 L4 4 L20 4 L20 20 Z"/><path d="M8 16 L11 10 L14 14 L17 8"/></svg></div>
+          <h3>Technical Candidate Assessment</h3>
+          <p>Candidates matched against equipment, applications and working environments.</p>
+          <div class="why-tag">Technical Network</div>
+        </div>
+        <div class="why-card reveal reveal-delay-3">
+          <div class="why-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6.5 6.5-6.5S15.5 16.4 15.5 20"/><path d="M16 4.5c2 .3 3.5 2 3.5 4s-1.5 3.7-3.5 4"/><path d="M18 13.5c2.3.6 4 2.8 4 5.5"/></svg></div>
+          <h3>Access to Passive Talent</h3>
+          <p>Direct relationships with technical professionals who may not be actively applying.</p>
+          <div class="why-tag">USA Coverage</div>
+        </div>
+        <div class="why-card reveal reveal-delay-4">
+          <div class="why-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="7" height="7"/><rect x="14" y="4" width="7" height="7"/><rect x="3" y="15" width="7" height="7"/><rect x="14" y="15" width="7" height="7"/></svg></div>
+          <h3>Flexible Search Support</h3>
+          <p>Support for individual hires, difficult searches and complete team buildouts.</p>
+          <div class="why-tag">Full-Service Search</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== TEAM ===================== -->
+  <section class="section-pad team-section" id="team">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="kicker">Meet the Team</div>
+        <h2>Meet the Rotating<br>Equipment Team</h2>
+        <p>A specialist recruitment team structured around the equipment markets, locations and workforce capabilities our clients need.</p>
+      </div>
+
+      <div class="team-grid">
+        <article class="tcard reveal reveal-delay-1">
+          <div class="ph"><div class="ph-icon"><svg viewBox="0 0 100 100"><circle cx="50" cy="38" r="18"/><path d="M20 90 C20 65 34 56 50 56 C66 56 80 65 80 90"/></svg></div><span class="ph-label">Portrait Placeholder</span></div>
+          <div class="tcard-body">
+            <h3>Harrison</h3>
+            <div class="role">USA Team Lead</div>
+            <p class="focus"><b>Texas Rotating Equipment Talent Partner</b><br>Focus: Strategic accounts, engineering and commercial leadership.</p>
+            <div class="tcard-actions">
+              <a href="#" class="icon-btn" aria-label="Harrison on LinkedIn"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 10v7M7 7v.01M11 17v-4.5c0-1.4 1-2.5 2.5-2.5S16 11.1 16 12.5V17"/></svg></a>
+              <a href="mailto:harrison@darwinindustrial.com" class="contact-btn">Contact</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="tcard reveal reveal-delay-2">
+          <div class="ph"><div class="ph-icon"><svg viewBox="0 0 100 100"><circle cx="50" cy="38" r="18"/><path d="M20 90 C20 65 34 56 50 56 C66 56 80 65 80 90"/></svg></div><span class="ph-label">Portrait Placeholder</span></div>
+          <div class="tcard-body">
+            <h3>Team Member</h3>
+            <div class="role">Pumps Specialist</div>
+            <p class="focus"><b>Pumps &amp; Fluid Handling Talent Partner</b><br>Focus: Pump OEMs, distributors, service providers and end users.</p>
+            <div class="tcard-actions">
+              <a href="#" class="icon-btn" aria-label="Pumps specialist on LinkedIn"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 10v7M7 7v.01M11 17v-4.5c0-1.4 1-2.5 2.5-2.5S16 11.1 16 12.5V17"/></svg></a>
+              <a href="mailto:pumps@darwinindustrial.com" class="contact-btn">Contact</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="tcard reveal reveal-delay-3">
+          <div class="ph"><div class="ph-icon"><svg viewBox="0 0 100 100"><circle cx="50" cy="38" r="18"/><path d="M20 90 C20 65 34 56 50 56 C66 56 80 65 80 90"/></svg></div><span class="ph-label">Portrait Placeholder</span></div>
+          <div class="tcard-body">
+            <h3>Team Member</h3>
+            <div class="role">Compression Specialist</div>
+            <p class="focus"><b>Compression Systems Talent Partner</b><br>Focus: Process gas, reciprocating and industrial air compression.</p>
+            <div class="tcard-actions">
+              <a href="#" class="icon-btn" aria-label="Compression specialist on LinkedIn"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 10v7M7 7v.01M11 17v-4.5c0-1.4 1-2.5 2.5-2.5S16 11.1 16 12.5V17"/></svg></a>
+              <a href="mailto:compression@darwinindustrial.com" class="contact-btn">Contact</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="tcard reveal reveal-delay-4">
+          <div class="ph"><div class="ph-icon"><svg viewBox="0 0 100 100"><circle cx="50" cy="38" r="18"/><path d="M20 90 C20 65 34 56 50 56 C66 56 80 65 80 90"/></svg></div><span class="ph-label">Portrait Placeholder</span></div>
+          <div class="tcard-body">
+            <h3>Team Member</h3>
+            <div class="role">Turbomachinery Specialist</div>
+            <p class="focus"><b>Turbomachinery Talent Partner</b><br>Focus: Centrifugal compressors, turbines, field service and commissioning.</p>
+            <div class="tcard-actions">
+              <a href="#" class="icon-btn" aria-label="Turbomachinery specialist on LinkedIn"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 10v7M7 7v.01M11 17v-4.5c0-1.4 1-2.5 2.5-2.5S16 11.1 16 12.5V17"/></svg></a>
+              <a href="mailto:turbo@darwinindustrial.com" class="contact-btn">Contact</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FINAL CTA ===================== -->
+  <section class="section-pad final-cta" id="contact">
+    <div class="wrap cta-grid">
+      <div class="reveal">
+        <div class="kicker">Get In Touch</div>
+        <h2>Building a Rotating<br>Equipment Team?</h2>
+        <p>Whether you need a technician who can troubleshoot equipment onsite, an engineer who can improve machinery reliability or a leader who can grow your aftermarket operation, speak with our specialist team.</p>
+        <div class="cta-buttons">
+          <a href="#contact-form" class="btn btn-primary">Discuss Your Hiring Needs</a>
+          <a href="mailto:careers@darwinindustrial.com" class="btn btn-dark">Send Us Your Resume</a>
+        </div>
+      </div>
+
+      <form class="form-panel reveal reveal-delay-2" id="contact-form" aria-label="Hiring enquiry form">
+        <h3>Tell us what you need</h3>
+        <div class="field">
+          <label for="f-name">Name</label>
+          <input type="text" id="f-name" name="name" required autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="f-company">Company</label>
+          <input type="text" id="f-company" name="company" required autocomplete="organization">
+        </div>
+        <div class="field">
+          <label for="f-email">Email</label>
+          <input type="email" id="f-email" name="email" required autocomplete="email">
+        </div>
+        <div class="field">
+          <label for="f-need">Hiring requirement</label>
+          <textarea id="f-need" name="need" rows="3" required placeholder="e.g. Field Service Engineer — centrifugal compressors, Gulf Coast"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <p class="form-note">We respond to every enquiry within one business day.</p>
+      </form>
+    </div>
+  </section>
+
+</main>
 
 <footer>
-  © 2026 Forge Talent · Skilled trades recruitment
+  <div class="wrap">
+    <div class="footer-tagline">Specialist staffing for the people who keep critical equipment running.</div>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#top" class="logo" aria-label="Darwin Industrial home">
+          <span class="mark" aria-hidden="true"></span>
+          <span>Darwin<br><small>Industrial</small></span>
+        </a>
+        <p>Rotating Equipment Staffing Partner. USA recruitment coverage across field service, engineering and commercial leadership.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Navigate</h5>
+        <a href="#expertise">Expertise</a>
+        <a href="#markets">Markets</a>
+        <a href="#roles">Roles</a>
+        <a href="#team">Team</a>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <a href="mailto:info@darwinindustrial.com">info@darwinindustrial.com</a>
+        <a href="tel:+18005551234">+1 (800) 555-1234</a>
+        <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <a href="#about">About</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#contact">Discuss Your Hiring Needs</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Darwin Industrial. All rights reserved.</span>
+      <span>USA Rotating Equipment Recruitment</span>
+    </div>
+  </div>
 </footer>
+
+<script>
+(function(){
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // header scroll state
+  var header = document.getElementById('siteHeader');
+  function onScroll(){
+    if(window.scrollY > 40){ header.classList.add('scrolled'); }
+    else{ header.classList.remove('scrolled'); }
+  }
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
+
+  // mobile menu
+  var burger = document.getElementById('burgerBtn');
+  var menu = document.getElementById('mobileMenu');
+  burger.addEventListener('click', function(){
+    var open = menu.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  menu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      menu.classList.remove('open');
+      burger.setAttribute('aria-expanded','false');
+    });
+  });
+
+  // hero headline + panel reveal
+  var hero = document.querySelector('.hero');
+  var headline = document.getElementById('heroHeadline');
+  requestAnimationFrame(function(){
+    setTimeout(function(){
+      hero.classList.add('animate');
+      headline.classList.add('animate');
+    }, 120);
+  });
+
+  // hero parallax
+  var parallax = document.getElementById('heroParallax');
+  if(!reduceMotion && parallax){
+    window.addEventListener('scroll', function(){
+      var y = window.scrollY;
+      if(y < window.innerHeight){
+        parallax.style.transform = 'translateY(' + (y * 0.18) + 'px)';
+      }
+    }, {passive:true});
+  }
+
+  // scroll reveal
+  var revealEls = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    }, {threshold:0.15});
+    revealEls.forEach(function(el){ io.observe(el); });
+
+    var chain = document.getElementById('valueChain');
+    if(chain){
+      var chainIo = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){ chain.classList.add('in-view'); chainIo.unobserve(chain); }
+        });
+      }, {threshold:0.3});
+      chainIo.observe(chain);
+    }
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('in-view'); });
+    if(document.getElementById('valueChain')) document.getElementById('valueChain').classList.add('in-view');
+  }
+
+  // markets interactive crossfade
+  var marketItems = document.querySelectorAll('.market-item');
+  var slides = document.querySelectorAll('#marketVisual .ph');
+  marketItems.forEach(function(item){
+    item.addEventListener('click', function(){
+      marketItems.forEach(function(m){ m.classList.remove('active'); m.setAttribute('aria-selected','false'); });
+      item.classList.add('active');
+      item.setAttribute('aria-selected','true');
+      var target = item.getAttribute('data-target');
+      slides.forEach(function(s){
+        s.classList.toggle('active', s.getAttribute('data-slide') === target);
+      });
+    });
+  });
+
+  // smooth anchor scroll offset for sticky header
+  document.querySelectorAll('a[href^="#"]').forEach(function(link){
+    link.addEventListener('click', function(e){
+      var id = link.getAttribute('href');
+      if(id.length < 2) return;
+      var target = document.querySelector(id);
+      if(!target) return;
+      e.preventDefault();
+      var offset = 84;
+      var top = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({top: top, behavior: reduceMotion ? 'auto' : 'smooth'});
+    });
+  });
+
+  // form submit (placeholder handling)
+  var form = document.getElementById('contact-form');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var btn = form.querySelector('button[type="submit"]');
+    var original = btn.textContent;
+    btn.textContent = 'Sent — Thank You';
+    btn.style.opacity = '0.75';
+    setTimeout(function(){
+      btn.textContent = original;
+      btn.style.opacity = '1';
+      form.reset();
+    }, 2600);
+  });
+})();
+</script>
 
 </body>
 </html>
