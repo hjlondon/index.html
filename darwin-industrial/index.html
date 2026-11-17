@@ -7,282 +7,299 @@
 <title>Darwin Industrial — Redesign Mockup</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  /* ---------- Brand tokens (from logo) ---------- */
+  /* ---------- Brand tokens ---------- */
   :root {
-    --stone: #bbb09f;        /* brand grey, light */
-    --graphite: #4a463e;     /* brand grey, dark */
-    --stone-dim: #8f877a;
-    --coal: #141310;
-    --coal-2: #1c1a16;
-    --iron: #27251f;
-    --rule-dark: rgba(187, 176, 159, 0.16);
-    --bone: #f2efe9;
-    --bone-2: #e6e1d7;
-    --ink: #1b1a17;
-    --rule-light: rgba(74, 70, 62, 0.18);
-    --ribbon: linear-gradient(100deg, #3b3832 0%, #8a8273 35%, #bbb09f 55%, #6e685d 80%, #3b3832 100%);
-    --hazard: repeating-linear-gradient(-45deg, var(--stone) 0 14px, var(--graphite) 14px 28px);
-    --display: "Barlow Condensed", "Arial Narrow", sans-serif;
-    --sans: "IBM Plex Sans", system-ui, sans-serif;
-    --mono: "IBM Plex Mono", ui-monospace, monospace;
+    --stone: #bbb09f;      /* brand accent (replaces Altronic-style gold) */
+    --stone-dk: #a39784;
+    --graphite: #4a463e;   /* brand dark grey */
+    --black: #0b0b0a;
+    --ink: #111110;
+    --body: #4d4a44;
+    --muted: #7b766d;
+    --line: #e4e1db;
+    --paper: #ffffff;
+    --mist: #f7f6f3;
+    --radius: 4px;
+    --shadow: 0 10px 30px rgba(0,0,0,.08);
+    --font: "Manrope", "Segoe UI", Arial, sans-serif;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-  body { font-family: var(--sans); background: var(--coal); color: var(--bone); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+  body { font-family: var(--font); color: var(--body); background: var(--paper); line-height: 1.6; font-size: 16px; -webkit-font-smoothing: antialiased; }
   a { color: inherit; text-decoration: none; }
   img { display: block; max-width: 100%; }
-  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
-  .mono { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
-  .display { font-family: var(--display); text-transform: uppercase; line-height: .92; letter-spacing: .005em; }
-  .stone { color: var(--stone); }
+  h1, h2, h3, h4 { color: var(--ink); font-weight: 700; line-height: 1.15; letter-spacing: -.01em; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+  .eyebrow { display: block; font-size: 13px; font-weight: 500; letter-spacing: .28em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+  .dark { background: var(--black); color: #d6d3cd; }
+  .dark h1, .dark h2, .dark h3 { color: #fff; }
+  .dark .eyebrow { color: var(--stone); }
 
-  /* ---------- Mockup chrome ---------- */
-  .mock-bar { background: #000; border-bottom: 1px solid var(--rule-dark); font-family: var(--mono); font-size: 11px; letter-spacing: .06em; color: var(--stone-dim); }
-  .mock-bar .wrap { display: flex; gap: 16px; align-items: center; justify-content: space-between; padding-top: 8px; padding-bottom: 8px; flex-wrap: wrap; }
+  /* Buttons */
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; font: 600 14px var(--font); letter-spacing: .04em; text-transform: uppercase; padding: 14px 24px; border: 1px solid var(--black); background: var(--black); color: #fff; border-radius: 0; cursor: pointer; transition: background .15s, color .15s, border-color .15s; }
+  .btn:hover { background: var(--graphite); border-color: var(--graphite); }
+  .btn.white { background: #fff; color: var(--ink); border-color: #fff; }
+  .btn.white:hover { background: var(--stone); border-color: var(--stone); }
+  .btn.stone { background: var(--stone); color: var(--ink); border-color: var(--stone); }
+  .btn.stone:hover { background: #fff; border-color: #fff; }
+  .btn.outline { background: transparent; color: var(--ink); }
+  .btn.outline:hover { background: var(--black); color: #fff; }
+  .btn.sm { padding: 10px 16px; font-size: 12px; }
+  .view-link { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; font-size: 14px; letter-spacing: .04em; text-transform: uppercase; color: var(--ink); }
+  .view-link::after { content: "→"; font-size: 18px; transition: transform .15s; }
+  .view-link:hover::after { transform: translateX(4px); }
+
+  /* ---------- Mockup switcher ---------- */
+  .mock-bar { background: #2a2824; color: #b9b3a8; font-size: 12px; }
+  .mock-bar .wrap { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding-top: 6px; padding-bottom: 6px; flex-wrap: wrap; }
   .tabs { display: flex; gap: 4px; flex-wrap: wrap; }
-  .tabs button { font: inherit; text-transform: uppercase; background: transparent; color: var(--stone-dim); border: 1px solid var(--rule-dark); padding: 6px 12px; cursor: pointer; }
-  .tabs button[aria-selected="true"] { background: var(--stone); color: var(--coal); border-color: var(--stone); }
+  .tabs button { font: 600 11px var(--font); letter-spacing: .06em; text-transform: uppercase; background: transparent; color: #b9b3a8; border: 1px solid #4a463e; padding: 5px 10px; cursor: pointer; }
+  .tabs button[aria-selected="true"] { background: var(--stone); color: var(--ink); border-color: var(--stone); }
   .view { display: none; }
   .view.active { display: block; }
 
-  /* ---------- Header ---------- */
-  header { position: sticky; top: 0; z-index: 40; background: rgba(20,19,16,.94); backdrop-filter: blur(10px); border-bottom: 1px solid var(--rule-dark); }
-  .nav { display: flex; align-items: center; justify-content: space-between; height: 76px; gap: 24px; }
-  .nav .logo img { height: 46px; width: auto; mix-blend-mode: lighten; }
-  .nav ul { display: flex; gap: 28px; list-style: none; }
-  .nav ul a { font-family: var(--display); font-weight: 600; font-size: 17px; letter-spacing: .08em; text-transform: uppercase; color: var(--stone); padding: 6px 0; border-bottom: 2px solid transparent; }
-  .nav ul a:hover, .nav ul a.on { color: var(--bone); border-color: var(--stone); }
-  .btn { display: inline-flex; align-items: center; gap: 10px; font-family: var(--display); font-weight: 700; font-size: 17px; letter-spacing: .1em; text-transform: uppercase; padding: 13px 22px; border: 1px solid var(--stone); color: var(--coal); background: var(--stone); cursor: pointer; transition: background .15s, color .15s; }
-  .btn:hover { background: var(--bone); border-color: var(--bone); }
-  .btn.ghost { background: transparent; color: var(--bone); }
-  .btn.ghost:hover { background: var(--stone); color: var(--coal); }
-  .btn.dark { background: var(--graphite); color: var(--bone); border-color: var(--graphite); }
-  .btn.dark:hover { background: var(--ink); border-color: var(--ink); }
-  .btn.sm { font-size: 14px; padding: 9px 14px; }
+  /* ---------- Top bar + nav ---------- */
+  .topbar { background: var(--black); color: #fff; font-size: 14px; }
+  .topbar .wrap { display: flex; justify-content: space-between; align-items: center; height: 42px; gap: 16px; }
+  .topbar .l { display: flex; gap: 24px; }
+  .topbar a:hover { color: var(--stone); }
+  .topbar .hiring { color: var(--stone); font-weight: 600; }
+  header { position: sticky; top: 0; z-index: 40; background: #fff; border-bottom: 1px solid var(--line); }
+  .nav { display: flex; align-items: center; justify-content: space-between; height: 84px; gap: 24px; }
+  .nav .logo img { height: 50px; width: auto; mix-blend-mode: multiply; }
+  .nav ul { display: flex; gap: 34px; list-style: none; }
+  .nav ul a { font-weight: 500; font-size: 15px; color: var(--ink); padding: 6px 0; border-bottom: 2px solid transparent; }
+  .nav ul a:hover, .nav ul a.on { border-color: var(--stone); }
   .menu-btn { display: none; }
 
   /* ---------- Hero ---------- */
-  .hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--rule-dark);
-    background: radial-gradient(ellipse at 75% 40%, #2a2721 0%, var(--coal) 60%); }
-  /* Video header: sits behind the hero content. If hero.mp4 is missing, the grid shows instead. */
-  .hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;
-    filter: grayscale(1) sepia(.3) contrast(1.05) brightness(.7); }   /* tones any footage to the stone/graphite palette */
-  .hero-shade { position: absolute; inset: 0; z-index: 1; pointer-events: none;
-    background:
-      linear-gradient(var(--rule-dark) 1px, transparent 1px) 0 0 / 80px 80px,
-      linear-gradient(90deg, var(--rule-dark) 1px, transparent 1px) 0 0 / 80px 80px,
-      linear-gradient(90deg, rgba(20,19,16,.94) 0%, rgba(20,19,16,.75) 50%, rgba(20,19,16,.45) 100%); }
-  .hero .wrap, .hero .hazard { position: relative; z-index: 2; }
-  .video-toggle { position: absolute; z-index: 3; right: 24px; bottom: 28px; font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
-    background: rgba(20,19,16,.7); color: var(--stone); border: 1px solid var(--rule-dark); padding: 6px 10px; cursor: pointer; }
-  .video-toggle:hover { color: var(--bone); border-color: var(--stone); }
-  @media (prefers-reduced-motion: reduce) { .hero-video, .video-toggle { display: none; } }
-  .hero .wrap { display: grid; grid-template-columns: 1.25fr .9fr; gap: 48px; padding-top: 88px; padding-bottom: 96px; align-items: end; }
-  .eyebrow { display: inline-flex; align-items: center; gap: 10px; color: var(--stone); }
-  .eyebrow::before { content: ""; width: 28px; height: 2px; background: var(--stone); }
-  .hero h1 { font-size: clamp(56px, 9vw, 132px); font-weight: 800; margin: 22px 0 26px; }
-  .hero h1 .metal { background: var(--ribbon); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  .hero p.lead { font-size: 19px; max-width: 560px; color: #cfc8bb; }
+  .hero { position: relative; overflow: hidden; background: radial-gradient(ellipse at 80% 35%, #3a3731 0%, #161512 55%, var(--black) 100%); color: #fff; }
+  .hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; filter: grayscale(.6) sepia(.15) brightness(.85); }
+  .hero-shade { position: absolute; inset: 0; z-index: 1; background: linear-gradient(90deg, rgba(11,11,10,.85) 0%, rgba(11,11,10,.55) 55%, rgba(11,11,10,.35) 100%); pointer-events: none; }
+  .hero-sphere { position: absolute; z-index: 1; right: -60px; top: 40px; width: min(760px, 62vw); opacity: .55; mix-blend-mode: lighten; pointer-events: none;
+    -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent 100%); mask-image: linear-gradient(180deg, #000 55%, transparent 100%); }
+  .hero.has-video .hero-sphere { display: none; }
+  .hero .wrap { position: relative; z-index: 2; padding-top: 120px; padding-bottom: 96px; }
+  .hero h1 { color: #fff; font-size: clamp(40px, 5.4vw, 66px); font-weight: 700; max-width: 680px; }
+  .hero p.lead { margin-top: 20px; font-size: 18px; max-width: 560px; color: #dcd8d0; }
   .hero .ctas { display: flex; gap: 12px; margin-top: 34px; flex-wrap: wrap; }
-  .plate { background: linear-gradient(180deg, #24221d, #1a1915); border: 1px solid var(--rule-dark); position: relative; }
-  .plate::before, .plate::after { content: ""; position: absolute; width: 7px; height: 7px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #d9d0c1, #5c574d); top: 12px; }
-  .plate::before { left: 12px; } .plate::after { right: 12px; }
-  .spec { padding: 34px 28px 10px; }
-  .spec h3 { color: var(--stone-dim); margin-bottom: 10px; }
-  .spec-row { display: flex; justify-content: space-between; align-items: baseline; padding: 16px 0; border-top: 1px dashed var(--rule-dark); }
-  .spec-row .k { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--stone-dim); }
-  .spec-row .v { font-family: var(--display); font-size: 44px; font-weight: 700; line-height: 1; }
-  .spec-foot { border-top: 1px solid var(--rule-dark); padding: 14px 28px; display: flex; justify-content: space-between; color: var(--stone-dim); }
-  .live-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--stone); margin-right: 8px; animation: pulse 1.6s infinite; }
-  @keyframes pulse { 50% { opacity: .25; } }
-  .hazard { height: 10px; background: var(--hazard); opacity: .85; }
+  .hero h2.sub { color: #fff; font-size: 34px; margin: 88px 0 28px; }
+  .hero-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .video-toggle { position: absolute; z-index: 3; right: 24px; top: 20px; font: 600 11px var(--font); letter-spacing: .06em; text-transform: uppercase; background: rgba(0,0,0,.5); color: #fff; border: 1px solid rgba(255,255,255,.3); padding: 6px 10px; cursor: pointer; }
+  @media (prefers-reduced-motion: reduce) { .hero-video, .video-toggle { display: none; } }
 
-  /* ---------- Search strip ---------- */
-  .search { background: var(--stone); color: var(--coal); }
-  .search form { display: grid; grid-template-columns: 1.4fr 1fr 1fr auto; gap: 0; }
-  .search label { display: block; padding: 14px 18px; border-right: 1px solid rgba(20,19,16,.2); }
-  .search label span { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--graphite); }
-  .search input, .search select { width: 100%; border: 0; background: transparent; font: 500 16px var(--sans); color: var(--coal); padding-top: 4px; outline: none; }
-  .search .btn { border-radius: 0; height: 100%; background: var(--coal); color: var(--bone); border-color: var(--coal); }
+  /* Job card (white, like Altronic news cards) */
+  .job { background: #fff; color: var(--body); display: flex; flex-direction: column; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); transition: transform .2s, box-shadow .2s; }
+  .job:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(0,0,0,.14); }
+  .job .band { background: var(--black); color: #fff; padding: 22px 24px; position: relative; min-height: 120px; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; }
+  .job .band::after { content: ""; position: absolute; right: -40px; bottom: -40px; width: 160px; height: 160px; background: url(sphere.png) center / cover; opacity: .35; mix-blend-mode: lighten; border-radius: 50%; }
+  .job .band .disc { font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--stone); position: relative; z-index: 1; }
+  .job .band .loc { font-size: 15px; font-weight: 600; margin-top: 4px; position: relative; z-index: 1; }
+  .job .body { padding: 22px 24px 10px; flex: 1; }
+  .job h3 { font-size: 22px; margin-bottom: 10px; }
+  .job p { font-size: 14px; color: var(--muted); }
+  .job .foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 24px 22px; }
+  .owner { display: flex; align-items: center; gap: 10px; line-height: 1.25; }
+  .owner b { display: block; font-size: 14px; color: var(--ink); font-weight: 600; }
+  .owner span { font-size: 12px; color: var(--muted); }
+  .avatar { width: 40px; height: 40px; flex: none; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(135deg, var(--graphite), var(--stone)); color: #fff; font-weight: 700; font-size: 14px; }
 
-  /* ---------- Sections ---------- */
-  section { padding: 96px 0; }
-  .light { background: var(--bone); color: var(--ink); }
-  .light .eyebrow { color: var(--graphite); } .light .eyebrow::before { background: var(--graphite); }
-  .sec-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 48px; flex-wrap: wrap; }
-  .sec-head h2 { font-size: clamp(42px, 5.5vw, 76px); font-weight: 800; margin-top: 14px; }
-  .sec-head p { max-width: 420px; color: var(--stone-dim); }
-  .light .sec-head p { color: #6a645a; }
+  /* ---------- Logo strip ---------- */
+  .strip { padding: 44px 0 52px; text-align: center; }
+  .strip .eyebrow { color: #fff; margin-bottom: 26px; letter-spacing: .32em; }
+  .logos { display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px; align-items: center; }
+  .logos div { height: 54px; border: 1px dashed #3d3a34; display: grid; place-items: center; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: #77726a; }
+
+  /* ---------- Generic sections ---------- */
+  section { padding: 100px 0; }
+  .statement { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: end; margin-bottom: 52px; }
+  .statement h2 { font-size: clamp(30px, 3.4vw, 42px); }
+  .statement p { font-size: 17px; }
+  .center { text-align: center; max-width: 760px; margin: 0 auto; }
+  .center h2 { font-size: clamp(30px, 3.4vw, 40px); margin-bottom: 14px; }
 
   /* Disciplines */
-  .disc { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--rule-light); border-left: 1px solid var(--rule-light); }
-  .disc a { padding: 26px 22px 24px; border-right: 1px solid var(--rule-light); border-bottom: 1px solid var(--rule-light); display: flex; flex-direction: column; gap: 34px; min-height: 210px; transition: background .2s, color .2s; position: relative; }
-  .disc a:hover { background: var(--graphite); color: var(--bone); }
-  .disc a:hover .code, .disc a:hover .cnt { color: var(--stone); }
-  .disc .code { font-family: var(--mono); font-size: 12px; color: var(--stone-dim); display: flex; justify-content: space-between; }
-  .disc h3 { font-family: var(--display); font-size: 30px; font-weight: 700; text-transform: uppercase; line-height: 1; }
-  .disc .cnt { font-family: var(--mono); font-size: 12px; color: #6a645a; margin-top: auto; }
+  .disc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .disc-card { border: 1px solid var(--line); border-radius: var(--radius); padding: 28px 24px 24px; display: flex; flex-direction: column; gap: 14px; min-height: 220px; transition: border-color .2s, box-shadow .2s, transform .2s; background: #fff; }
+  .disc-card:hover { border-color: var(--stone); box-shadow: var(--shadow); transform: translateY(-3px); }
+  .disc-card .num { font-size: 13px; font-weight: 700; color: var(--stone-dk); letter-spacing: .1em; }
+  .disc-card h3 { font-size: 20px; }
+  .disc-card p { font-size: 14px; color: var(--muted); flex: 1; }
 
-  /* Job cards (work-order style) */
-  .jobs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  .job { background: var(--coal-2); border: 1px solid var(--rule-dark); display: flex; flex-direction: column; transition: border-color .15s, transform .15s; }
-  .job:hover { border-color: var(--stone); transform: translateY(-2px); }
-  .job .top { display: flex; justify-content: space-between; padding: 14px 18px; border-bottom: 1px dashed var(--rule-dark); color: var(--stone-dim); }
-  .job .body { padding: 20px 18px; flex: 1; }
-  .job h3 { font-family: var(--display); font-size: 30px; font-weight: 700; text-transform: uppercase; line-height: 1; margin-bottom: 12px; }
-  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
-  .chip { font-family: var(--mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; border: 1px solid var(--rule-dark); padding: 4px 8px; color: var(--stone); }
-  .job p { font-size: 14px; color: #b3ac9f; }
-  .owner { display: flex; align-items: center; gap: 12px; padding: 14px 18px; border-top: 1px solid var(--rule-dark); background: rgba(187,176,159,.04); }
-  .owner .who { flex: 1; line-height: 1.25; }
-  .owner .who b { display: block; font-weight: 600; font-size: 14px; }
-  .owner .who span { font-family: var(--mono); font-size: 11px; color: var(--stone-dim); text-transform: uppercase; letter-spacing: .06em; }
-  .avatar { width: 42px; height: 42px; flex: none; display: grid; place-items: center; background: var(--ribbon); color: var(--coal); font-family: var(--display); font-weight: 800; font-size: 18px; letter-spacing: .04em; clip-path: polygon(0 0, 100% 0, 100% 75%, 75% 100%, 0 100%); }
-  .avatar.lg { width: 100%; height: auto; aspect-ratio: 4/5; font-size: 64px; }
-  .arrow { width: 36px; height: 36px; display: grid; place-items: center; border: 1px solid var(--rule-dark); color: var(--stone); }
+  /* Who we are: white cards over a black band, then counters */
+  .who { padding-bottom: 0; }
+  .band-wrap { position: relative; margin-top: 120px; }
+  .band-wrap::before { content: ""; position: absolute; left: 0; right: 0; top: 60px; bottom: 0; background: var(--black); }
+  .band-cards { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .band-card { background: #fff; padding: 36px 40px; border-radius: var(--radius); box-shadow: var(--shadow); }
+  .band-card h3 { font-size: 28px; margin-bottom: 10px; }
+  .stats { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; padding: 72px 0 84px; text-align: center; color: #fff; }
+  .stats b { display: block; font-size: 54px; font-weight: 500; line-height: 1; color: #fff; letter-spacing: -.02em; }
+  .stats span { display: block; margin-top: 12px; font-size: 14px; color: #c9c5bd; }
 
-  /* Services */
-  .services { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid var(--rule-light); }
-  .svc { padding: 30px 24px; border-right: 1px solid var(--rule-light); }
-  .svc:last-child { border-right: 0; }
-  .svc .n { font-family: var(--display); font-size: 64px; font-weight: 800; line-height: 1; color: var(--stone); }
-  .svc h3 { font-family: var(--display); font-size: 28px; text-transform: uppercase; margin: 18px 0 8px; }
-  .svc p { font-size: 15px; color: #5d584f; }
+  /* Team carousel */
+  .carousel-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 36px; flex-wrap: wrap; }
+  .carousel-head h2 { font-size: clamp(30px, 3.4vw, 40px); }
+  .team-filter { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+  .chip-btn { font: 600 12px var(--font); letter-spacing: .04em; text-transform: uppercase; background: #fff; color: var(--ink); border: 1px solid var(--line); padding: 9px 14px; cursor: pointer; }
+  .chip-btn:hover { border-color: var(--ink); }
+  .chip-btn.on { background: var(--black); color: #fff; border-color: var(--black); }
+  .carousel { position: relative; }
+  .track { display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - 72px) / 4); gap: 24px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding: 4px 2px 24px; }
+  .track::-webkit-scrollbar { display: none; }
+  .arrows { display: flex; gap: 8px; }
+  .arrows button { width: 44px; height: 44px; border: 1px solid var(--line); background: #fff; font-size: 18px; cursor: pointer; }
+  .arrows button:hover { background: var(--black); color: #fff; border-color: var(--black); }
+  .member { scroll-snap-align: start; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; cursor: pointer; transition: box-shadow .2s, transform .2s; display: flex; flex-direction: column; }
+  .member:hover { box-shadow: var(--shadow); transform: translateY(-3px); }
+  .member .ph { aspect-ratio: 1 / 1; background: linear-gradient(160deg, #2a2824, var(--graphite) 60%, var(--stone)); display: grid; place-items: center; color: #fff; font-size: 54px; font-weight: 700; letter-spacing: .02em; position: relative; }
+  .member .ph .live { position: absolute; left: 14px; bottom: 14px; background: #fff; color: var(--ink); font-size: 12px; font-weight: 700; padding: 6px 10px; letter-spacing: .02em; }
+  .member .info { padding: 20px 22px 22px; flex: 1; display: flex; flex-direction: column; }
+  .member .niche { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--stone-dk); font-weight: 700; }
+  .member h3 { font-size: 20px; margin: 6px 0 2px; }
+  .member .title { font-size: 14px; color: var(--muted); flex: 1; margin-bottom: 16px; }
 
-  /* Team */
-  .team-filter { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 28px; }
-  .team-filter button, .jf button { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; background: transparent; color: var(--stone); border: 1px solid var(--rule-dark); padding: 8px 12px; cursor: pointer; }
-  .team-filter button.on, .jf button.on { background: var(--stone); color: var(--coal); border-color: var(--stone); }
-  .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-  .member { background: var(--coal-2); border: 1px solid var(--rule-dark); cursor: pointer; transition: border-color .15s; }
-  .member:hover { border-color: var(--stone); }
-  .member .avatar.lg { aspect-ratio: 1 / 1; clip-path: polygon(0 0, 100% 0, 100% 88%, 88% 100%, 0 100%); }
-  .member .info { padding: 16px; }
-  .member .niche { color: var(--stone-dim); }
-  .member h3 { font-family: var(--display); font-size: 26px; text-transform: uppercase; line-height: 1; margin: 6px 0 4px; }
-  .member .title { font-size: 13px; color: #b3ac9f; }
-  .member .meta { display: flex; justify-content: space-between; border-top: 1px dashed var(--rule-dark); margin-top: 14px; padding-top: 12px; }
-  .member .meta b { font-family: var(--display); font-size: 22px; color: var(--bone); }
-  .member .meta span { display: block; font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--stone-dim); }
+  /* Black feature cards */
+  .feat { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .feat-card { background: var(--black); color: #cfcbc3; padding: 44px 40px; border-radius: var(--radius); position: relative; overflow: hidden; }
+  .feat-card h3 { color: #fff; font-size: 30px; font-weight: 500; margin-bottom: 12px; }
+  .feat-card p { margin-bottom: 28px; max-width: 420px; position: relative; z-index: 1; }
+  .feat-card .btn { position: relative; z-index: 1; }
+  .feat-card.wide { grid-column: 1 / -1; }
+  .feat-card .meta { font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--stone); margin-bottom: 12px; }
+  .feat-card.sphere::after { content: ""; position: absolute; right: -80px; top: -60px; width: 340px; height: 260px; background: url(sphere.png) center / contain no-repeat; opacity: .5; mix-blend-mode: lighten;
+    -webkit-mask-image: radial-gradient(closest-side, #000 60%, transparent 100%); mask-image: radial-gradient(closest-side, #000 60%, transparent 100%); }
 
-  /* Proof strip */
-  .proof { display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: center; }
-  blockquote { font-family: var(--display); font-size: clamp(30px, 3.6vw, 48px); line-height: 1.05; text-transform: uppercase; font-weight: 600; }
-  blockquote::before { content: "\201C"; display: block; font-size: 90px; line-height: .6; color: var(--stone); }
-  .cite { margin-top: 20px; color: #6a645a; }
-  .logos { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--rule-light); border-left: 1px solid var(--rule-light); }
-  .logos div { height: 96px; display: grid; place-items: center; border-right: 1px solid var(--rule-light); border-bottom: 1px solid var(--rule-light); font-family: var(--mono); font-size: 11px; color: #8a8478; letter-spacing: .08em; text-transform: uppercase; }
+  /* Overlapping CTA box */
+  .cta-wrap { position: relative; padding-bottom: 0; }
+  .cta-wrap::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 50%; background: var(--black); z-index: 0; }
+  .cta-box { position: relative; z-index: 1; background: #fff; text-align: center; padding: 56px 32px; border-radius: var(--radius); box-shadow: 0 20px 50px rgba(0,0,0,.12); }
+  .cta-box h2 { font-size: clamp(28px, 3vw, 38px); margin-bottom: 10px; }
+  .cta-box p { margin-bottom: 26px; }
+  .cta-box .cta-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .cta-box .btn { min-width: 220px; font-size: 16px; text-transform: none; letter-spacing: 0; font-weight: 500; }
+  .after-cta { background: var(--black); padding: 64px 0 72px; }
+  .after-cta h3 { color: #fff; font-size: 26px; margin-bottom: 14px; }
+  .after-cta p { color: #bdb8af; }
 
-  /* CTA split */
-  .split { display: grid; grid-template-columns: 1fr 1fr; }
-  .split a { padding: 64px 48px; display: block; border-right: 1px solid var(--rule-dark); transition: background .2s; }
-  .split a:last-child { border-right: 0; background: var(--graphite); }
-  .split a:hover { background: var(--iron); }
-  .split h3 { font-family: var(--display); font-size: clamp(36px, 4vw, 60px); text-transform: uppercase; line-height: .95; margin: 14px 0 18px; }
-
-  footer { border-top: 1px solid var(--rule-dark); padding: 64px 0 28px; color: var(--stone-dim); font-size: 14px; }
-  .foot { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 32px; }
-  .foot img { height: 52px; width: auto; mix-blend-mode: lighten; margin-bottom: 18px; }
-  .foot h4 { color: var(--bone); margin-bottom: 14px; }
-  .foot ul { list-style: none; display: grid; gap: 8px; }
-  .foot ul a:hover { color: var(--bone); }
-  .legal { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--rule-dark); flex-wrap: wrap; gap: 12px; }
+  /* Footer */
+  footer { background: var(--mist); padding: 72px 0 28px; font-size: 14px; color: var(--muted); }
+  .foot { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.2fr; gap: 32px; }
+  .foot img { height: 52px; width: auto; mix-blend-mode: multiply; margin-bottom: 18px; }
+  .foot h4 { font-size: 15px; margin-bottom: 16px; }
+  .foot ul { list-style: none; display: grid; gap: 10px; }
+  .foot a:hover { color: var(--ink); }
+  .foot .contact { display: grid; gap: 8px; color: var(--ink); }
+  .foot .btn { width: 100%; margin-bottom: 10px; }
+  .legal { display: flex; justify-content: space-between; margin-top: 56px; padding-top: 22px; border-top: 1px solid var(--line); flex-wrap: wrap; gap: 12px; font-size: 13px; }
 
   /* ---------- Jobs page ---------- */
-  .page-head { padding: 64px 0 40px; border-bottom: 1px solid var(--rule-dark); }
-  .page-head h1 { font-size: clamp(54px, 8vw, 110px); font-weight: 800; margin-top: 16px; }
-  .jobs-layout { display: grid; grid-template-columns: 290px 1fr; gap: 32px; padding: 40px 0 96px; }
-  .side h4 { color: var(--stone-dim); margin: 0 0 12px; }
-  .side .grp { padding-bottom: 22px; margin-bottom: 22px; border-bottom: 1px solid var(--rule-dark); }
-  .rec-list { display: grid; gap: 4px; }
-  .rec-list button { display: flex; align-items: center; gap: 10px; width: 100%; text-align: left; background: transparent; border: 1px solid transparent; color: var(--bone); padding: 6px; cursor: pointer; font: 500 14px var(--sans); }
-  .rec-list button:hover { border-color: var(--rule-dark); }
-  .rec-list button.on { border-color: var(--stone); background: rgba(187,176,159,.08); }
-  .rec-list .avatar { width: 30px; height: 30px; font-size: 13px; }
-  .rec-list .n { margin-left: auto; font-family: var(--mono); font-size: 12px; color: var(--stone-dim); }
+  .page-hero { position: relative; overflow: hidden; background: var(--black); color: #fff; padding: 72px 0 64px; }
+  .page-hero .hero-sphere { top: -40px; width: 520px; opacity: .45; }
+  .page-hero .wrap { position: relative; z-index: 2; }
+  .page-hero h1 { color: #fff; font-size: clamp(38px, 5vw, 58px); }
+  .page-hero p { color: #cfcbc3; margin-top: 10px; max-width: 560px; }
+  .jobs-layout { display: grid; grid-template-columns: 290px 1fr; gap: 40px; padding: 56px 0 100px; }
+  .side .grp { padding-bottom: 26px; margin-bottom: 26px; border-bottom: 1px solid var(--line); }
+  .side h4 { font-size: 12px; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 14px; }
+  .rec-list { display: grid; gap: 2px; }
+  .rec-list button { display: flex; align-items: center; gap: 10px; width: 100%; text-align: left; background: transparent; border: 1px solid transparent; border-radius: var(--radius); color: var(--ink); padding: 7px 8px; cursor: pointer; font: 500 14px var(--font); }
+  .rec-list button:hover { background: var(--mist); }
+  .rec-list button.on { border-color: var(--ink); background: var(--mist); }
+  .rec-list .avatar { width: 30px; height: 30px; font-size: 11px; }
+  .rec-list .n { margin-left: auto; font-size: 12px; font-weight: 700; color: var(--muted); }
   .jf { display: flex; flex-wrap: wrap; gap: 6px; }
-  .rec-banner { display: none; align-items: center; gap: 16px; padding: 16px; border: 1px solid var(--stone); margin-bottom: 18px; background: rgba(187,176,159,.06); }
+  .rec-banner { display: none; align-items: center; gap: 16px; padding: 18px 20px; background: var(--black); color: #cfcbc3; border-radius: var(--radius); margin-bottom: 20px; }
   .rec-banner.show { display: flex; }
-  .rec-banner .avatar { width: 54px; height: 54px; font-size: 22px; }
+  .rec-banner .avatar { width: 54px; height: 54px; font-size: 18px; }
   .rec-banner .t { flex: 1; }
-  .rec-banner b { font-family: var(--display); font-size: 26px; text-transform: uppercase; display: block; line-height: 1; }
-  .list-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; color: var(--stone-dim); }
-  .job-rows { display: grid; gap: 10px; }
-  .row { display: grid; grid-template-columns: 1fr 200px 220px 40px; gap: 18px; align-items: center; padding: 18px; background: var(--coal-2); border: 1px solid var(--rule-dark); transition: border-color .15s; }
-  .row:hover { border-color: var(--stone); }
-  .row h3 { font-family: var(--display); font-size: 26px; text-transform: uppercase; line-height: 1; margin-bottom: 8px; }
-  .row .chips { margin: 0; }
-  .row .loc { font-size: 14px; color: #cfc8bb; }
-  .row .loc span { display: block; font-family: var(--mono); font-size: 11px; color: var(--stone-dim); letter-spacing: .06em; text-transform: uppercase; }
-  .row .owner { padding: 0; border: 0; background: none; }
+  .rec-banner small { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--stone); }
+  .rec-banner b { display: block; color: #fff; font-size: 22px; line-height: 1.2; }
+  .list-head { display: flex; justify-content: space-between; margin-bottom: 14px; font-size: 14px; color: var(--muted); }
+  .job-rows { display: grid; gap: 12px; }
+  .row { display: grid; grid-template-columns: 1fr 180px 230px auto; gap: 20px; align-items: center; padding: 22px 24px; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; transition: border-color .15s, box-shadow .15s; }
+  .row:hover { border-color: var(--stone); box-shadow: var(--shadow); }
+  .row h3 { font-size: 19px; margin-bottom: 4px; }
+  .row .d { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--stone-dk); font-weight: 700; }
+  .row .loc { font-size: 14px; color: var(--ink); }
+  .row .loc span { display: block; font-size: 12px; color: var(--muted); }
 
   /* ---------- Profile page ---------- */
-  .profile-hero { display: grid; grid-template-columns: 360px 1fr; gap: 56px; padding: 56px 0 72px; align-items: start; }
-  .profile-hero .avatar.lg { font-size: 110px; clip-path: polygon(0 0, 100% 0, 100% 90%, 90% 100%, 0 100%); }
-  .photo-note { margin-top: 10px; color: var(--stone-dim); font-size: 11px; }
-  .profile-hero h1 { font-size: clamp(56px, 7vw, 100px); font-weight: 800; margin: 12px 0 8px; }
-  .role { font-size: 18px; color: var(--stone); margin-bottom: 26px; }
-  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--rule-dark); margin: 28px 0; }
-  .kpis div { padding: 18px; border-right: 1px solid var(--rule-dark); }
+  .profile-hero { position: relative; overflow: hidden; background: var(--black); color: #cfcbc3; padding: 64px 0 0; }
+  .profile-hero .hero-sphere { top: -20px; }
+  .profile-hero .wrap { position: relative; z-index: 2; display: grid; grid-template-columns: 340px 1fr; gap: 56px; }
+  .p-photo { aspect-ratio: 4 / 5; background: linear-gradient(160deg, #2a2824, var(--graphite) 60%, var(--stone)); display: grid; place-items: center; color: #fff; font-size: 96px; font-weight: 700; border-radius: var(--radius); margin-bottom: 48px; box-shadow: 0 24px 50px rgba(0,0,0,.35); }
+  .p-photo-note { font-size: 11px; color: var(--muted); margin-top: 60px; }
+  .profile-hero .back { font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--stone); }
+  .profile-hero h1 { color: #fff; font-size: clamp(40px, 5vw, 60px); margin: 14px 0 6px; }
+  .profile-hero .role { font-size: 18px; color: #e3dfd8; margin-bottom: 22px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+  .tag { font-size: 12px; font-weight: 600; letter-spacing: .04em; padding: 6px 12px; border: 1px solid #3d3a34; color: #e3dfd8; }
+  .contact-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 40px; }
+  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); background: #fff; border-radius: var(--radius) var(--radius) 0 0; }
+  .kpis div { padding: 24px; border-right: 1px solid var(--line); }
   .kpis div:last-child { border-right: 0; }
-  .kpis b { font-family: var(--display); font-size: 42px; line-height: 1; display: block; }
-  .kpis span { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; color: var(--stone-dim); text-transform: uppercase; }
-  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 28px; }
-  .contact-row { display: flex; gap: 10px; flex-wrap: wrap; }
-  .bio { max-width: 680px; color: #cfc8bb; font-size: 17px; }
-  .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  .testi { background: #fff; border: 1px solid var(--rule-light); padding: 28px 24px; display: flex; flex-direction: column; position: relative; }
-  .testi::before { content: ""; position: absolute; left: 0; top: 0; right: 0; height: 4px; background: var(--ribbon); }
-  .testi .q { font-size: 17px; line-height: 1.5; color: var(--ink); flex: 1; }
-  .testi .by { margin-top: 22px; padding-top: 16px; border-top: 1px dashed var(--rule-light); }
-  .testi .by b { display: block; }
-  .testi .by span { font-size: 13px; color: #6a645a; }
-  .placed { margin-top: 12px; display: inline-block; font-family: var(--mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; background: var(--bone-2); color: var(--graphite); padding: 5px 8px; }
-  .verified { display: inline-flex; align-items: center; gap: 6px; color: var(--graphite); }
-  .sample { position: absolute; top: 12px; right: 12px; font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: #9a2f1f; border: 1px dashed #9a2f1f; padding: 2px 6px; }
-
-  .note { font-family: var(--mono); font-size: 11px; letter-spacing: .04em; color: var(--stone-dim); margin-top: 16px; }
+  .kpis b { display: block; font-size: 38px; font-weight: 500; color: var(--ink); line-height: 1; }
+  .kpis span { display: block; font-size: 13px; color: var(--muted); margin-top: 8px; }
+  .bio-sec { padding: 96px 0 40px; }
+  .bio-sec .wrap { display: grid; grid-template-columns: 340px 1fr; gap: 56px; }
+  .bio { font-size: 18px; color: var(--body); max-width: 700px; }
+  .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .testi { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 32px 28px; display: flex; flex-direction: column; position: relative; border-top: 4px solid var(--stone); }
+  .testi .stars { color: var(--stone-dk); letter-spacing: 3px; margin-bottom: 14px; }
+  .testi .q { font-size: 16px; color: var(--ink); flex: 1; }
+  .testi .by { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line); font-size: 14px; }
+  .testi .by b { display: block; color: var(--ink); }
+  .placed { margin-top: 10px; display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; background: var(--mist); color: var(--graphite); padding: 5px 9px; }
+  .sample { position: absolute; top: 12px; right: 12px; font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #9a2f1f; border: 1px dashed #9a2f1f; padding: 2px 6px; }
+  .note { font-size: 12px; color: var(--muted); margin-top: 16px; }
+  .grey { background: var(--mist); }
+  .cards3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 
   /* ---------- Responsive ---------- */
   @media (max-width: 1024px) {
-    .hero .wrap, .proof, .profile-hero { grid-template-columns: 1fr; }
-    .profile-hero .avatar.lg { max-width: 300px; }
-    .disc, .team-grid { grid-template-columns: repeat(2, 1fr); }
-    .jobs-grid, .testi-grid { grid-template-columns: 1fr 1fr; }
-    .services { grid-template-columns: 1fr 1fr; }
-    .svc { border-bottom: 1px solid var(--rule-light); }
-    .jobs-layout { grid-template-columns: 1fr; }
+    .nav ul { gap: 22px; }
+    .hero-cards, .cards3, .testi-grid { grid-template-columns: 1fr 1fr; }
+    .disc-grid { grid-template-columns: repeat(2, 1fr); }
+    .statement { grid-template-columns: 1fr; gap: 16px; }
+    .track { grid-auto-columns: calc((100% - 24px) / 2); }
+    .stats { grid-template-columns: repeat(2, 1fr); row-gap: 48px; }
+    .jobs-layout, .profile-hero .wrap, .bio-sec .wrap { grid-template-columns: 1fr; }
+    .p-photo { max-width: 280px; transform: none; }
+    .p-photo-note { margin-top: 10px; }
     .row { grid-template-columns: 1fr 1fr; }
-    .row .arrow { display: none; }
     .foot { grid-template-columns: 1fr 1fr; }
+    .logos { grid-template-columns: repeat(3, 1fr); }
   }
   @media (max-width: 720px) {
     .wrap { padding: 0 16px; }
-    .nav ul, .nav .btn:not(.menu-btn) { display: none; }
+    .topbar .l a:not(:first-child) { display: none; }
+    .nav { height: 70px; }
+    .nav ul, .nav > .btn:not(.menu-btn) { display: none; }
     .menu-btn { display: inline-flex; }
-    .nav .logo img { height: 38px; }
-    section { padding: 64px 0; }
-    .hero .wrap { padding-top: 56px; padding-bottom: 64px; }
-    .search form { grid-template-columns: 1fr; }
-    .search label { border-right: 0; border-bottom: 1px solid rgba(20,19,16,.2); }
-    .search .btn { justify-content: center; padding: 16px; }
-    .disc, .team-grid, .jobs-grid, .testi-grid, .services, .split, .foot, .kpis { grid-template-columns: 1fr; }
-    .kpis div { border-right: 0; border-bottom: 1px solid var(--rule-dark); }
-    .svc { border-right: 0; }
-    .split a { padding: 48px 20px; border-right: 0; border-bottom: 1px solid var(--rule-dark); }
+    .nav .logo img { height: 40px; }
+    section { padding: 72px 0; }
+    .hero .wrap { padding-top: 72px; padding-bottom: 64px; }
+    .hero h2.sub { margin-top: 56px; }
+    .hero-cards, .cards3, .testi-grid, .disc-grid, .band-cards, .feat, .foot, .kpis { grid-template-columns: 1fr; }
+    .band-card { padding: 28px 24px; }
+    .track { grid-auto-columns: 82%; }
+    .stats b { font-size: 42px; }
+    .feat-card { padding: 34px 24px; }
+    .cta-box .btn { min-width: 0; width: 100%; }
     .row { grid-template-columns: 1fr; }
+    .kpis div { border-right: 0; border-bottom: 1px solid var(--line); }
     .logos { grid-template-columns: repeat(2, 1fr); }
   }
 </style>
 </head>
 <body>
 
-<!-- Mockup switcher -->
 <div class="mock-bar">
   <div class="wrap">
-    <span>DESIGN MOCKUP · NEW BRAND PALETTE #BBB09F / #4A463E · counts, recruiter assignments and testimonials are placeholders</span>
+    <span>Design mockup · recruiter assignments, counts, testimonials and logos are placeholders</span>
     <div class="tabs" role="tablist">
       <button role="tab" aria-selected="true" data-view="home">Home</button>
       <button role="tab" aria-selected="false" data-view="jobs">Jobs by recruiter</button>
@@ -291,169 +308,158 @@
   </div>
 </div>
 
+<div class="topbar">
+  <div class="wrap">
+    <div class="l">
+      <a href="tel:">☎ Main office number</a>
+      <a href="mailto:">✉ Main email address</a>
+    </div>
+    <a href="#" class="hiring">We're hiring →</a>
+  </div>
+</div>
+
 <header>
   <div class="wrap nav">
-    <a href="#" class="logo" data-go="home"><img src="logo-dark.png" alt="Darwin Industrial"></a>
+    <a href="#" class="logo" data-go="home"><img src="logo-light.png" alt="Darwin Industrial"></a>
     <ul>
       <li><a href="#" data-go="jobs">Jobs</a></li>
       <li><a href="#" data-go="home" data-anchor="disciplines">Disciplines</a></li>
-      <li><a href="#" data-go="home" data-anchor="team">Team</a></li>
+      <li><a href="#" data-go="home" data-anchor="team">Our Team</a></li>
       <li><a href="#">Insights</a></li>
       <li><a href="#">Contact</a></li>
     </ul>
-    <a href="#" class="btn sm">Hire talent →</a>
-    <button class="btn sm ghost menu-btn" aria-label="Menu">Menu</button>
+    <a href="#" class="btn">Hire talent</a>
+    <button class="btn outline sm menu-btn" aria-label="Menu">Menu</button>
   </div>
 </header>
 
 <!-- ====================== HOME ====================== -->
 <main class="view active" id="view-home">
 
-  <div class="hero">
-    <!-- VIDEO HEADER: put your clip next to this file as hero.mp4 (and optionally hero.webm + hero-poster.jpg) -->
+  <div class="hero" id="hero">
+    <!-- VIDEO HEADER: put your clip next to this file as hero.mp4 (optional: hero.webm, hero-poster.jpg) -->
     <video class="hero-video" id="hero-video" autoplay muted loop playsinline preload="metadata" poster="hero-poster.jpg" aria-hidden="true">
       <source src="hero.webm" type="video/webm">
       <source src="hero.mp4" type="video/mp4">
     </video>
     <div class="hero-shade"></div>
+    <img class="hero-sphere" src="sphere.png" alt="">
     <button class="video-toggle" id="video-toggle" type="button" hidden>❚❚ Pause video</button>
     <div class="wrap">
-      <div>
-        <span class="eyebrow mono">Industrial recruitment · USA</span>
-        <h1 class="display">The people who keep <span class="metal">industry</span> running.</h1>
-        <p class="lead">Field service technicians, rotating equipment specialists, engineers and industrial sales talent. Found fast, vetted properly, by recruiters who only work in industry.</p>
-        <div class="ctas">
-          <a href="#" class="btn">Hire talent →</a>
-          <a href="#" class="btn ghost" data-go="jobs">Search 83 live jobs</a>
-        </div>
+      <span class="eyebrow" style="color:var(--stone)">Industrial recruitment · USA</span>
+      <h1>The people who keep industry running.</h1>
+      <p class="lead">Field service technicians, rotating equipment specialists, engineers and industrial sales talent. Found fast and vetted properly.</p>
+      <div class="ctas">
+        <a href="#" class="btn white" data-go="jobs">Search 83 jobs</a>
+        <a href="#" class="btn stone">Hire talent</a>
       </div>
-      <div class="plate">
-        <div class="spec">
-          <h3 class="mono">Spec sheet / Darwin Industrial</h3>
-          <div class="spec-row"><span class="k">Live roles</span><span class="v">83</span></div>
-          <div class="spec-row"><span class="k">Disciplines covered</span><span class="v">08</span></div>
-          <div class="spec-row"><span class="k">Specialist consultants</span><span class="v">13</span></div>
-          <div class="spec-row"><span class="k">Coverage</span><span class="v">USA</span></div>
-        </div>
-        <div class="spec-foot mono"><span><span class="live-dot"></span>Jobs board live</span><span>Updated daily</span></div>
-      </div>
-    </div>
-    <div class="hazard"></div>
-  </div>
-
-  <div class="search">
-    <div class="wrap">
-      <form onsubmit="event.preventDefault(); go('jobs');">
-        <label><span>Keyword</span><input placeholder="e.g. Pump mechanic, CNC, VFD"></label>
-        <label><span>Discipline</span><select><option>All disciplines</option><option>Rotating Equipment</option><option>Field Service</option><option>Machining &amp; Fabrication</option><option>Building Services</option></select></label>
-        <label><span>Location</span><input placeholder="City or state"></label>
-        <button class="btn" type="submit">Search jobs →</button>
-      </form>
+      <h2 class="sub">Latest Jobs</h2>
+      <div class="hero-cards" id="home-jobs"></div>
     </div>
   </div>
 
-  <section class="light" id="disciplines">
+  <div class="dark strip">
     <div class="wrap">
-      <div class="sec-head">
-        <div><span class="eyebrow mono">What we recruit</span><h2 class="display">Eight disciplines.<br>One specialist team.</h2></div>
-        <p>From the plant floor to the branch office, every discipline has a named consultant who owns the market and the roles.</p>
+      <span class="eyebrow">Trusted by industrial employers</span>
+      <div class="logos"><div>Client logo</div><div>Client logo</div><div>Client logo</div><div>Client logo</div><div>Client logo</div></div>
+    </div>
+  </div>
+
+  <section id="disciplines">
+    <div class="wrap">
+      <div class="statement">
+        <div><span class="eyebrow">What we do</span><h2>Specialist recruitment for the plant floor, the field and the branch office.</h2></div>
+        <p>Eight disciplines, each owned by a named consultant who knows the market, the competitors and the people worth hiring.</p>
       </div>
-      <div class="disc">
-        <a href="#"><span class="code"><span>DI-01</span><span>→</span></span><h3>Automation Engineering</h3><span class="cnt">Controls · Electrical · Instrumentation</span></a>
-        <a href="#"><span class="code"><span>DI-02</span><span>→</span></span><h3>Industrial Sales</h3><span class="cnt">Account managers · Sales engineers</span></a>
-        <a href="#"><span class="code"><span>DI-03</span><span>→</span></span><h3>Rotating Equipment</h3><span class="cnt">Pumps · Compressors · Motors</span></a>
-        <a href="#"><span class="code"><span>DI-04</span><span>→</span></span><h3>Field Service</h3><span class="cnt">Service techs · VFD · Commissioning</span></a>
-        <a href="#"><span class="code"><span>DI-05</span><span>→</span></span><h3>Machining &amp; Fabrication</h3><span class="cnt">CNC · Manual · Welding</span></a>
-        <a href="#"><span class="code"><span>DI-06</span><span>→</span></span><h3>Building Services</h3><span class="cnt">HVAC · BAS · Controls</span></a>
-        <a href="#"><span class="code"><span>DI-07</span><span>→</span></span><h3>Branch &amp; Service Management</h3><span class="cnt">Branch · Service · Ops managers</span></a>
-        <a href="#"><span class="code"><span>DI-08</span><span>→</span></span><h3>Pipeline Construction</h3><span class="cnt">Superintendents · Foremen · QA/QC</span></a>
+      <div class="disc-grid">
+        <a href="#" class="disc-card"><span class="num">01</span><h3>Automation Engineering</h3><p>Controls, electrical, instrumentation and manufacturing engineers.</p><span class="view-link">View roles</span></a>
+        <a href="#" class="disc-card"><span class="num">02</span><h3>Industrial Sales</h3><p>Account managers, sales engineers and business developers.</p><span class="view-link">View roles</span></a>
+        <a href="#" class="disc-card"><span class="num">03</span><h3>Rotating Equipment</h3><p>Pump, compressor and motor mechanics and engineers.</p><span class="view-link">View roles</span></a>
+        <a href="#" class="disc-card"><span class="num">04</span><h3>Field Service</h3><p>Service technicians, VFD specialists and commissioning engineers.</p><span class="view-link">View roles</span></a>
+        <a href="#" class="disc-card"><span class="num">05</span><h3>Machining &amp; Fabrication</h3><p>CNC and manual machinists, programmers and welders.</p><span class="view-link">View roles</span></a>
+        <a href="#" class="disc-card"><span class="num">06</span><h3>Building Services</h3><p>HVAC, BAS and building controls technicians.</p><span class="view-link">View roles</span></a>
+        <a href="#" class="disc-card"><span class="num">07</span><h3>Branch &amp; Service Management</h3><p>Branch, service and operations managers.</p><span class="view-link">View roles</span></a>
+        <a href="#" class="disc-card"><span class="num">08</span><h3>Pipeline Construction</h3><p>Superintendents, foremen and QA/QC professionals.</p><span class="view-link">View roles</span></a>
       </div>
     </div>
   </section>
 
-  <section>
+  <section class="who">
     <div class="wrap">
-      <div class="sec-head">
-        <div><span class="eyebrow mono">Live roles</span><h2 class="display">Latest industrial jobs</h2></div>
-        <a href="#" class="btn ghost" data-go="jobs">View all 83 jobs →</a>
+      <div class="center">
+        <span class="eyebrow">Who we are</span>
+        <h2>Recruiters who only work in industry</h2>
+        <p>From Gulf Coast pump shops to Midwest machine floors, industrial employers come to us for the technicians, engineers and managers who keep their equipment running and their customers served.</p>
       </div>
-      <div class="jobs-grid" id="home-jobs"></div>
     </div>
-  </section>
-
-  <section class="light">
-    <div class="wrap">
-      <div class="sec-head">
-        <div><span class="eyebrow mono">How we work</span><h2 class="display">Built for uptime</h2></div>
-        <p>Four ways to engage, depending on how fast and how many people you need.</p>
-      </div>
-      <div class="services">
-        <div class="svc"><div class="n">01</div><h3>Contingency</h3><p>Risk-free single hires. You pay only on success.</p></div>
-        <div class="svc"><div class="n">02</div><h3>Contract &amp; Freelance</h3><p>Rapid, flexible talent for projects, shutdowns and peaks.</p></div>
-        <div class="svc"><div class="n">03</div><h3>Retained</h3><p>Exclusive, dedicated search for in-demand skills.</p></div>
-        <div class="svc"><div class="n">04</div><h3>Managed Services</h3><p>End-to-end hiring support, embedded in your business.</p></div>
+    <div class="band-wrap">
+      <div class="wrap">
+        <div class="band-cards">
+          <div class="band-card"><h3>For Employers</h3><p>Contingency, contract, retained and managed hiring. One specialist who owns your search from brief to start date.</p></div>
+          <div class="band-card"><h3>For Candidates</h3><p>Talk to a recruiter who understands your trade. Every live role on this site names the person handling it.</p></div>
+        </div>
+        <div class="stats">
+          <div><b data-count="83">0</b><span>Live roles right now</span></div>
+          <div><b data-count="8">0</b><span>Industrial disciplines</span></div>
+          <div><b data-count="13">0</b><span>Specialist consultants</span></div>
+          <div><b>USA</b><span>Nationwide coverage</span></div>
+        </div>
       </div>
     </div>
   </section>
 
   <section id="team">
     <div class="wrap">
-      <div class="sec-head">
-        <div><span class="eyebrow mono">Meet the team</span><h2 class="display">Find your specialist</h2></div>
-        <p>Every consultant shows the roles they're working on right now. Pick your niche and talk to the person who owns it.</p>
+      <div class="carousel-head">
+        <div><span class="eyebrow">Our team</span><h2>Find Your Specialist</h2></div>
+        <div class="arrows"><button type="button" data-scroll="-1" aria-label="Previous">‹</button><button type="button" data-scroll="1" aria-label="Next">›</button></div>
       </div>
       <div class="team-filter" id="team-filter"></div>
-      <div class="team-grid" id="team-grid"></div>
+      <div class="carousel"><div class="track" id="team-track"></div></div>
     </div>
   </section>
 
-  <section class="light">
-    <div class="wrap proof">
-      <div>
-        <span class="eyebrow mono">Client feedback</span>
-        <blockquote style="margin-top:22px">[Sample] They understood the role better than the job boards ever did. Shortlist in a week, hire in three.</blockquote>
-        <p class="cite mono">Operations Director · Industrial pump OEM · Placeholder, replace with a verified quote</p>
-      </div>
-      <div class="logos">
-        <div>Client logo</div><div>Client logo</div><div>Client logo</div>
-        <div>Client logo</div><div>Client logo</div><div>Client logo</div>
-      </div>
+  <section style="padding-top:0">
+    <div class="wrap feat">
+      <div class="feat-card sphere"><div class="meta">Clients</div><h3>Build your next service team</h3><p>Tell us the role. We'll come back with a market view and a shortlist plan within 24 hours.</p><a href="#" class="btn white">Hire talent</a></div>
+      <div class="feat-card"><div class="meta">Candidates</div><h3>Find your next industrial job</h3><p>83 live roles across the US. Register once and get new roles from your recruiter by email.</p><a href="#" class="btn white" data-go="jobs">Search jobs</a></div>
+      <div class="feat-card wide"><div class="meta">Insight · Manufacturing output</div><h3>Rising factory orders put capacity planning in focus</h3><p>What a third straight monthly rise in manufactured-goods orders means for industrial hiring plans.</p><a href="#" class="btn white">Read more</a></div>
     </div>
   </section>
 
-  <div class="split">
-    <a href="#"><span class="mono stone">Are you hiring?</span><h3>Build your next service team →</h3><p style="color:#b3ac9f">Tell us the role. We'll come back with a market view in 24 hours.</p></a>
-    <a href="#" data-go="jobs"><span class="mono stone">Looking for a role?</span><h3>Find your next industrial job →</h3><p style="color:#d8d1c4">83 live roles across the US, each with a named recruiter.</p></a>
+  <section class="cta-wrap">
+    <div class="wrap">
+      <div class="cta-box">
+        <h2>How can we help?</h2>
+        <p>Whether you're hiring or looking for your next role, we'll put you through to the right specialist.</p>
+        <div class="cta-row"><a href="#" class="btn">I'm hiring</a><a href="#" class="btn" data-go="jobs">I'm looking for a job</a></div>
+      </div>
+    </div>
+  </section>
+  <div class="after-cta">
+    <div class="wrap"><h3>Part of Darwin Recruitment</h3><p>Darwin Industrial is the industrial specialist division of Darwin Recruitment.</p></div>
   </div>
 </main>
 
 <!-- ====================== JOBS ====================== -->
 <main class="view" id="view-jobs">
-  <div class="page-head">
+  <div class="page-hero">
+    <img class="hero-sphere" src="sphere.png" alt="">
     <div class="wrap">
-      <span class="eyebrow mono">Live roles</span>
-      <h1 class="display">Industrial jobs</h1>
+      <span class="eyebrow" style="color:var(--stone)">Live roles</span>
+      <h1>Industrial Jobs</h1>
+      <p>Every role is handled by a named specialist. Filter by recruiter to see who's working on what.</p>
     </div>
   </div>
   <div class="wrap jobs-layout">
     <aside class="side">
-      <div class="grp">
-        <h4 class="mono">Filter by recruiter</h4>
-        <div class="rec-list" id="rec-list"></div>
-      </div>
-      <div class="grp">
-        <h4 class="mono">Discipline</h4>
-        <div class="jf" id="disc-filter"></div>
-      </div>
-      <div class="grp">
-        <h4 class="mono">Job alerts</h4>
-        <p style="font-size:14px;color:#b3ac9f;margin-bottom:12px">Get new roles from your recruiter by email.</p>
-        <a href="#" class="btn sm ghost">Create alert</a>
-      </div>
+      <div class="grp"><h4>Filter by recruiter</h4><div class="rec-list" id="rec-list"></div></div>
+      <div class="grp"><h4>Discipline</h4><div class="jf" id="disc-filter"></div></div>
+      <div class="grp"><h4>Job alerts</h4><p style="font-size:14px;margin-bottom:14px">Get new roles from your recruiter by email.</p><a href="#" class="btn sm">Create alert</a></div>
     </aside>
     <div>
       <div class="rec-banner" id="rec-banner"></div>
-      <div class="list-head"><span class="mono" id="count"></span><span class="mono">Sort: Newest</span></div>
+      <div class="list-head"><span id="count"></span><span>Sort: Newest</span></div>
       <div class="job-rows" id="job-rows"></div>
     </div>
   </div>
@@ -461,58 +467,52 @@
 
 <!-- ====================== PROFILE ====================== -->
 <main class="view" id="view-profile">
-  <div class="wrap">
-    <div class="profile-hero">
+  <div class="profile-hero">
+    <img class="hero-sphere" src="sphere.png" alt="">
+    <div class="wrap">
+      <div><div class="p-photo" id="p-avatar">HR</div></div>
       <div>
-        <div class="avatar lg" id="p-avatar">HR</div>
-        <p class="photo-note mono">Use a real photo here, not an AI illustration</p>
-      </div>
-      <div>
-        <a href="#" class="mono stone" data-go="home" data-anchor="team">← All team</a>
-        <h1 class="display" id="p-name">Harrison Roberts</h1>
+        <a href="#" class="back" data-go="home" data-anchor="team">← Our team</a>
+        <h1 id="p-name">Harrison Roberts</h1>
         <div class="role" id="p-role">Team Leader · Industrial</div>
-        <div class="tags">
-          <span class="chip">Maintenance &amp; Reliability</span><span class="chip">Field Service</span><span class="chip">Rotating Equipment</span><span class="chip">Automation</span><span class="chip">CMMS</span>
-        </div>
-        <div class="contact-row">
-          <a href="#" class="btn">Book a call →</a>
-          <a href="#" class="btn ghost">Email</a>
-          <a href="#" class="btn ghost">LinkedIn</a>
-        </div>
+        <div class="tags"><span class="tag">Maintenance &amp; Reliability</span><span class="tag">Field Service</span><span class="tag">Rotating Equipment</span><span class="tag">Automation</span><span class="tag">CMMS</span></div>
+        <div class="contact-row"><a href="#" class="btn stone">Book a call</a><a href="#" class="btn white">Email</a><a href="#" class="btn white">LinkedIn</a></div>
         <div class="kpis">
-          <div><b id="p-live">7</b><span>Live roles</span></div>
+          <div><b id="p-live">2</b><span>Live roles</span></div>
           <div><b>—</b><span>Placements</span></div>
           <div><b>—</b><span>Avg. days to shortlist</span></div>
           <div><b>—</b><span>Client rating</span></div>
         </div>
-        <p class="bio">Senior recruiter in maintenance, reliability and engineering staffing for industrial machinery, construction and manufacturing. Precision headhunting for hard-to-fill roles; high-volume campaigns when you need an entire shift team.</p>
-        <p class="note">KPIs shown as "—" should be filled from real ATS data before launch.</p>
+      </div>
+    </div>
+  </div>
+  <div class="bio-sec">
+    <div class="wrap">
+      <p class="p-photo-note">Use a real photo here, not an AI illustration.</p>
+      <div>
+        <span class="eyebrow">About</span>
+        <p class="bio">Senior recruiter in maintenance, reliability and engineering staffing for industrial machinery, construction and manufacturing. Precision headhunting for hard-to-fill roles, and high-volume campaigns when you need an entire shift team.</p>
+        <p class="note">Stats shown as "—" should come from real ATS data before launch.</p>
       </div>
     </div>
   </div>
 
-  <section class="light">
+  <section class="grey">
     <div class="wrap">
-      <div class="sec-head">
-        <div><span class="eyebrow mono">Client testimonials</span><h2 class="display">What clients say about Harrison</h2></div>
-        <p>Short, attributed and tied to a real placement. Pull from LinkedIn recommendations or a review platform so each quote can be verified.</p>
-      </div>
+      <div class="center" style="margin-bottom:48px"><span class="eyebrow">Client testimonials</span><h2 id="p-testi-title">What Clients Say About Harrison</h2><p>Short, attributed and tied to a real placement. Source them from LinkedIn recommendations or a review platform so each one can be verified.</p></div>
       <div class="testi-grid">
-        <div class="testi"><span class="sample">Sample</span><p class="q">"Harrison took the time to understand our service territory and shift patterns. The two field techs he placed were both still with us a year later."</p><div class="by"><b>Client name</b><span>Service Manager · Company</span><br><span class="placed">Placed: Field Service Technician ×2</span></div></div>
-        <div class="testi"><span class="sample">Sample</span><p class="q">"We'd been trying to fill a reliability engineer role for four months. Harrison had three qualified people in front of us in under two weeks."</p><div class="by"><b>Client name</b><span>Plant Manager · Company</span><br><span class="placed">Placed: Reliability Engineer</span></div></div>
-        <div class="testi"><span class="sample">Sample</span><p class="q">"Straight talking, knows the market and always picks up the phone. Exactly what you want from a recruiter in this industry."</p><div class="by"><b>Client name</b><span>VP Operations · Company</span><br><span class="placed">Placed: Branch Manager</span></div></div>
+        <div class="testi"><span class="sample">Sample</span><div class="stars">★★★★★</div><p class="q">"Harrison took the time to understand our service territory and shift patterns. The two field techs he placed were both still with us a year later."</p><div class="by"><b>Client name</b>Service Manager · Company<br><span class="placed">Placed: Field Service Technician ×2</span></div></div>
+        <div class="testi"><span class="sample">Sample</span><div class="stars">★★★★★</div><p class="q">"We'd been trying to fill a reliability engineer role for four months. Harrison had three qualified people in front of us in under two weeks."</p><div class="by"><b>Client name</b>Plant Manager · Company<br><span class="placed">Placed: Reliability Engineer</span></div></div>
+        <div class="testi"><span class="sample">Sample</span><div class="stars">★★★★★</div><p class="q">"Straight talking, knows the market and always picks up the phone. Exactly what you want from a recruiter in this industry."</p><div class="by"><b>Client name</b>VP Operations · Company<br><span class="placed">Placed: Branch Manager</span></div></div>
       </div>
-      <p class="note" style="color:#6a645a">Placeholder copy only. Replace with genuine, client-approved testimonials before publishing.</p>
+      <p class="note" style="text-align:center">Placeholder copy only. Replace with genuine, client-approved testimonials before publishing.</p>
     </div>
   </section>
 
   <section>
     <div class="wrap">
-      <div class="sec-head">
-        <div><span class="eyebrow mono">Now recruiting</span><h2 class="display" id="p-jobs-title">Harrison's live roles</h2></div>
-        <a href="#" class="btn ghost" id="p-all-jobs">See all on jobs board →</a>
-      </div>
-      <div class="jobs-grid" id="p-jobs"></div>
+      <div class="carousel-head"><div><span class="eyebrow">Now recruiting</span><h2 id="p-jobs-title">Harrison's Live Roles</h2></div><a href="#" class="btn outline" id="p-all-jobs">See all on jobs board</a></div>
+      <div class="cards3" id="p-jobs"></div>
     </div>
   </section>
 </main>
@@ -520,17 +520,17 @@
 <footer>
   <div class="wrap">
     <div class="foot">
-      <div><img src="logo-dark.png" alt="Darwin Industrial"><p>Specialist recruitment for the people who keep industry running. Part of Darwin Recruitment.</p></div>
-      <div><h4 class="mono">Candidates</h4><ul><li><a href="#">Search jobs</a></li><li><a href="#">Job alerts</a></li><li><a href="#">Upload CV</a></li></ul></div>
-      <div><h4 class="mono">Clients</h4><ul><li><a href="#">Hire talent</a></li><li><a href="#">Services</a></li><li><a href="#">Insights</a></li></ul></div>
-      <div><h4 class="mono">Contact</h4><ul><li><a href="#">Office address</a></li><li><a href="#">Main phone line</a></li><li><a href="#">LinkedIn</a></li></ul></div>
+      <div><img src="logo-light.png" alt="Darwin Industrial"><div class="contact"><span>Office address</span><span>☎ Main phone line</span><span>✉ Main email address</span></div></div>
+      <div><h4>Candidates</h4><ul><li><a href="#">Search jobs</a></li><li><a href="#">Job alerts</a></li><li><a href="#">Upload CV</a></li><li><a href="#">Our team</a></li></ul></div>
+      <div><h4>Company</h4><ul><li><a href="#">Hire talent</a></li><li><a href="#">Services</a></li><li><a href="#">Insights</a></li><li><a href="#">Privacy policy</a></li><li><a href="#">EEO statement</a></li></ul></div>
+      <div><h4>Get started</h4><a href="#" class="btn sm">Hire talent</a><a href="#" class="btn sm" data-go="jobs">Search jobs</a></div>
     </div>
-    <div class="legal mono"><span>© 2026 Darwin Industrial, part of Darwin Recruitment</span><span>Privacy · Terms · EEO statement</span></div>
+    <div class="legal"><span>© 2026 Darwin Industrial, part of Darwin Recruitment. All rights reserved.</span><span>LinkedIn · Sitemap</span></div>
   </div>
 </footer>
 
 <script>
-  // Team and job data. Names, titles and job titles are from the current site;
+  // Names, titles and job titles are from the current site;
   // which recruiter owns which job, and the counts, are illustrative only.
   const team = [
     { id: "hr", name: "Harrison Roberts", title: "Team Leader · Industrial", niche: "Team Lead" },
@@ -550,13 +550,13 @@
   const jobs = [
     { t: "BAS Technician", loc: "Dallas, TX", d: "Building Services", type: "Permanent", by: "aj", s: "Field-based BAS technician maintaining and troubleshooting building automation systems across the Dallas area." },
     { t: "CNC Machinist", loc: "Indianapolis, IN", d: "Machining & Fabrication", type: "Permanent", by: "mz", s: "Machine, repair and restore precision industrial components using CNC and manual equipment." },
+    { t: "VFD Field Service Technician", loc: "Odessa, TX", d: "Field Service", type: "Permanent", by: "hr", s: "Field service on variable frequency drives and industrial motor controls across West Texas." },
     { t: "CNC Machinist & Programmer", loc: "Batavia, NY", d: "Machining & Fabrication", type: "Permanent", by: "qm", s: "Program and machine precision components for industrial equipment to tight tolerances." },
     { t: "CNC 2nd Shift Supervisor", loc: "Canastota, NY", d: "Machining & Fabrication", type: "Permanent", by: "mz", s: "Hands-on CNC machinist stepping into leadership of the 2nd shift team." },
     { t: "Senior Manufacturing Engineer", loc: "Blaine, MN", d: "Automation Engineering", type: "Permanent", by: "hr", s: "Technical lead for CNC machining processes in a precision manufacturing environment." },
     { t: "Manual Machinist", loc: "Baton Rouge, LA", d: "Rotating Equipment", type: "Permanent", by: "ls", s: "Manual machining for an industrial rotating equipment repair facility." },
     { t: "Industrial Pump Mechanic (Nights)", loc: "Baton Rouge, LA", d: "Rotating Equipment", type: "Permanent", by: "ls", s: "Night shift pump mechanic repairing and rebuilding industrial pumps." },
     { t: "Pump Mechanic / Repair Tech", loc: "Baton Rouge, LA", d: "Rotating Equipment", type: "Permanent", by: "zd", s: "Strip, inspect, repair and test industrial pumps in a busy service shop." },
-    { t: "VFD Field Service Technician", loc: "Odessa, TX", d: "Field Service", type: "Permanent", by: "hr", s: "Field service on variable frequency drives and industrial motor controls across West Texas." },
     { t: "Pump Mechanic", loc: "Los Angeles, CA", d: "Rotating Equipment", type: "Permanent", by: "ls", s: "Rotating equipment mechanic servicing industrial pumps for a regional service center." },
     { t: "Air Compressor Service Tech", loc: "Houston, TX", d: "Field Service", type: "Permanent", by: "rs", s: "Service, maintain and repair industrial air compressors on customer sites." },
     { t: "Compressor Sales Engineer", loc: "Charlotte, NC", d: "Industrial Sales", type: "Permanent", by: "rp", s: "Grow a territory selling compressed air systems to manufacturing accounts." },
@@ -569,64 +569,72 @@
   function jobCard(j) {
     const m = byId[j.by];
     return `<article class="job">
-      <div class="top mono"><span>WO-${String(jobs.indexOf(j) + 1041)}</span><span>${esc(j.type)}</span></div>
-      <div class="body"><h3>${esc(j.t)}</h3>
-        <div class="chips"><span class="chip">${esc(j.loc)}</span><span class="chip">${esc(j.d)}</span></div>
-        <p>${esc(j.s)}</p></div>
-      <a href="#" class="owner" data-profile="${m.id}"><div class="avatar">${initials(m.name)}</div>
-        <div class="who"><b>${esc(m.name)}</b><span>Your recruiter</span></div><span class="arrow">→</span></a>
-    </article>`;
+      <div class="band"><span class="disc">${esc(j.d)}</span><span class="loc">${esc(j.loc)} · ${esc(j.type)}</span></div>
+      <div class="body"><h3>${esc(j.t)}</h3><p>${esc(j.s)}</p></div>
+      <div class="foot">
+        <a href="#" class="owner" data-profile="${m.id}"><div class="avatar">${initials(m.name)}</div><div><b>${esc(m.name)}</b><span>Your recruiter</span></div></a>
+        <a href="#" class="view-link">View</a>
+      </div></article>`;
   }
+  document.getElementById("home-jobs").innerHTML = jobs.slice(0, 3).map(jobCard).join("");
 
-  // Home: latest jobs
-  document.getElementById("home-jobs").innerHTML = jobs.slice(0, 6).map(jobCard).join("");
-
-  // Home: team grid with niche filter + live job count
+  // Team carousel with niche filter + live role count
   const niches = ["All", ...new Set(team.map(m => m.niche))];
   let niche = "All";
   function renderTeam() {
     document.getElementById("team-filter").innerHTML = niches.map(n =>
-      `<button class="${n === niche ? "on" : ""}" data-niche="${esc(n)}">${esc(n)}</button>`).join("");
-    document.getElementById("team-grid").innerHTML = team.filter(m => niche === "All" || m.niche === niche).map(m => {
+      `<button class="chip-btn ${n === niche ? "on" : ""}" data-niche="${esc(n)}">${esc(n)}</button>`).join("");
+    document.getElementById("team-track").innerHTML = team.filter(m => niche === "All" || m.niche === niche).map(m => {
       const n = jobsFor(m.id).length;
       return `<div class="member" data-profile="${m.id}">
-        <div class="avatar lg">${initials(m.name)}</div>
-        <div class="info"><span class="niche mono">${esc(m.niche)}</span><h3>${esc(m.name)}</h3><div class="title">${esc(m.title)}</div>
-        <div class="meta"><div><b>${n}</b><span>Live roles</span></div><div style="text-align:right"><b>→</b><span>Profile</span></div></div></div>
+        <div class="ph">${initials(m.name)}<span class="live">${n} live role${n === 1 ? "" : "s"}</span></div>
+        <div class="info"><span class="niche">${esc(m.niche)}</span><h3>${esc(m.name)}</h3><div class="title">${esc(m.title)}</div><span class="view-link">View profile</span></div>
       </div>`;
     }).join("");
   }
   document.getElementById("team-filter").addEventListener("click", e => {
     const b = e.target.closest("button"); if (!b) return; niche = b.dataset.niche; renderTeam();
   });
+  document.querySelectorAll("[data-scroll]").forEach(b => b.addEventListener("click", () => {
+    const t = document.getElementById("team-track"); t.scrollBy({ left: t.clientWidth * +b.dataset.scroll, behavior: "smooth" });
+  }));
   renderTeam();
 
-  // Jobs page: filter by recruiter and discipline
+  // Count-up stats (like the reference site)
+  const counters = document.querySelectorAll("[data-count]");
+  const runCount = el => { const end = +el.dataset.count; let n = 0; const step = Math.max(1, Math.ceil(end / 40));
+    const t = setInterval(() => { n = Math.min(end, n + step); el.textContent = n; if (n >= end) clearInterval(t); }, 25); };
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { runCount(e.target); io.unobserve(e.target); } }), { threshold: .5 });
+    counters.forEach(c => io.observe(c));
+  } else counters.forEach(c => c.textContent = c.dataset.count);
+
+  // Jobs page
   let recFilter = null, discFilter = "All";
   const discs = ["All", ...new Set(jobs.map(j => j.d))];
   function renderJobs() {
     document.getElementById("rec-list").innerHTML =
-      `<button class="${recFilter ? "" : "on"}" data-rec=""><div class="avatar">ALL</div>All recruiters<span class="n">${jobs.length}</span></button>` +
+      `<button class="${recFilter ? "" : "on"}" data-rec=""><div class="avatar">All</div>All recruiters<span class="n">${jobs.length}</span></button>` +
       team.filter(m => jobsFor(m.id).length).map(m =>
         `<button class="${recFilter === m.id ? "on" : ""}" data-rec="${m.id}"><div class="avatar">${initials(m.name)}</div>${esc(m.name)}<span class="n">${jobsFor(m.id).length}</span></button>`).join("");
     document.getElementById("disc-filter").innerHTML = discs.map(d =>
-      `<button class="${d === discFilter ? "on" : ""}" data-disc="${esc(d)}">${esc(d)}</button>`).join("");
+      `<button class="chip-btn ${d === discFilter ? "on" : ""}" data-disc="${esc(d)}">${esc(d)}</button>`).join("");
     const list = jobs.filter(j => (!recFilter || j.by === recFilter) && (discFilter === "All" || j.d === discFilter));
     const banner = document.getElementById("rec-banner");
     if (recFilter) {
       const m = byId[recFilter];
-      banner.innerHTML = `<div class="avatar">${initials(m.name)}</div><div class="t"><span class="mono stone">Showing roles managed by</span><b>${esc(m.name)}</b><span style="font-size:14px;color:#b3ac9f">${esc(m.title)} · ${esc(m.niche)}</span></div><a href="#" class="btn sm" data-profile="${m.id}">View profile</a>`;
+      banner.innerHTML = `<div class="avatar">${initials(m.name)}</div><div class="t"><small>Roles managed by</small><b>${esc(m.name)}</b>${esc(m.title)} · ${esc(m.niche)}</div><a href="#" class="btn white sm" data-profile="${m.id}">View profile</a>`;
       banner.classList.add("show");
     } else banner.classList.remove("show");
     document.getElementById("count").textContent = `${list.length} role${list.length === 1 ? "" : "s"}`;
     document.getElementById("job-rows").innerHTML = list.map(j => {
       const m = byId[j.by];
       return `<article class="row">
-        <div><h3>${esc(j.t)}</h3><div class="chips"><span class="chip">${esc(j.d)}</span><span class="chip">${esc(j.type)}</span></div></div>
+        <div><span class="d">${esc(j.d)}</span><h3>${esc(j.t)}</h3></div>
         <div class="loc"><span>Location</span>${esc(j.loc)}</div>
-        <a href="#" class="owner" data-profile="${m.id}"><div class="avatar">${initials(m.name)}</div><div class="who"><b>${esc(m.name)}</b><span>${esc(m.niche)}</span></div></a>
-        <span class="arrow">→</span></article>`;
-    }).join("") || `<p style="color:#b3ac9f">No roles match these filters.</p>`;
+        <a href="#" class="owner" data-profile="${m.id}"><div class="avatar">${initials(m.name)}</div><div><b>${esc(m.name)}</b><span>${esc(m.niche)}</span></div></a>
+        <a href="#" class="view-link">View</a></article>`;
+    }).join("") || `<p>No roles match these filters.</p>`;
   }
   document.getElementById("view-jobs").addEventListener("click", e => {
     const r = e.target.closest("[data-rec]"); const d = e.target.closest("[data-disc]");
@@ -642,27 +650,27 @@
     document.getElementById("p-name").textContent = m.name;
     document.getElementById("p-role").textContent = `${m.title} · ${m.niche}`;
     document.getElementById("p-live").textContent = js.length;
-    document.querySelector("#view-profile .testi-grid").closest("section").querySelector("h2").textContent = `What clients say about ${first}`;
-    document.getElementById("p-jobs-title").textContent = `${first}'s live roles`;
-    document.getElementById("p-jobs").innerHTML = js.map(jobCard).join("") || `<p style="color:#b3ac9f">No live roles right now. Register for alerts.</p>`;
+    document.getElementById("p-testi-title").textContent = `What Clients Say About ${first}`;
+    document.getElementById("p-jobs-title").textContent = `${first}'s Live Roles`;
+    document.getElementById("p-jobs").innerHTML = js.map(jobCard).join("") || `<p>No live roles right now. Register for alerts.</p>`;
     document.getElementById("p-all-jobs").dataset.rec = id;
   }
   renderProfile("hr");
 
-  // Video header: show a pause button only once a video actually loads (accessibility: lets visitors stop motion)
+  // Video header: pause button + hide sphere once a video loads
   const vid = document.getElementById("hero-video"), vbtn = document.getElementById("video-toggle");
-  if (vid.readyState >= 2) vbtn.hidden = false;
-  vid.addEventListener("loadeddata", () => { vbtn.hidden = false; });
+  const onVideo = () => { vbtn.hidden = false; document.getElementById("hero").classList.add("has-video"); };
+  if (vid.readyState >= 2) onVideo();
+  vid.addEventListener("loadeddata", onVideo);
   vbtn.addEventListener("click", () => {
-    if (vid.paused) { vid.play(); vbtn.textContent = "❚❚ Pause video"; }
-    else { vid.pause(); vbtn.textContent = "▶ Play video"; }
+    if (vid.paused) { vid.play(); vbtn.textContent = "❚❚ Pause video"; } else { vid.pause(); vbtn.textContent = "▶ Play video"; }
   });
 
   // Navigation between mockup views
   function go(view, anchor) {
     document.querySelectorAll(".view").forEach(v => v.classList.toggle("active", v.id === "view-" + view));
     document.querySelectorAll(".tabs button").forEach(b => b.setAttribute("aria-selected", b.dataset.view === view));
-    document.querySelectorAll(".nav ul a").forEach(a => a.classList.toggle("on", a.dataset.go === view && view === "jobs"));
+    document.querySelectorAll(".nav ul a").forEach(a => a.classList.toggle("on", view === "jobs" && a.dataset.go === "jobs"));
     if (anchor) document.getElementById(anchor)?.scrollIntoView(); else window.scrollTo(0, 0);
   }
   document.addEventListener("click", e => {
