@@ -64,10 +64,20 @@
 
   /* ---------- Hero ---------- */
   .hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--rule-dark);
+    background: radial-gradient(ellipse at 75% 40%, #2a2721 0%, var(--coal) 60%); }
+  /* Video header: sits behind the hero content. If hero.mp4 is missing, the grid shows instead. */
+  .hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;
+    filter: grayscale(1) sepia(.3) contrast(1.05) brightness(.7); }   /* tones any footage to the stone/graphite palette */
+  .hero-shade { position: absolute; inset: 0; z-index: 1; pointer-events: none;
     background:
       linear-gradient(var(--rule-dark) 1px, transparent 1px) 0 0 / 80px 80px,
       linear-gradient(90deg, var(--rule-dark) 1px, transparent 1px) 0 0 / 80px 80px,
-      radial-gradient(ellipse at 75% 40%, #2a2721 0%, var(--coal) 60%); }
+      linear-gradient(90deg, rgba(20,19,16,.94) 0%, rgba(20,19,16,.75) 50%, rgba(20,19,16,.45) 100%); }
+  .hero .wrap, .hero .hazard { position: relative; z-index: 2; }
+  .video-toggle { position: absolute; z-index: 3; right: 24px; bottom: 28px; font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+    background: rgba(20,19,16,.7); color: var(--stone); border: 1px solid var(--rule-dark); padding: 6px 10px; cursor: pointer; }
+  .video-toggle:hover { color: var(--bone); border-color: var(--stone); }
+  @media (prefers-reduced-motion: reduce) { .hero-video, .video-toggle { display: none; } }
   .hero .wrap { display: grid; grid-template-columns: 1.25fr .9fr; gap: 48px; padding-top: 88px; padding-bottom: 96px; align-items: end; }
   .eyebrow { display: inline-flex; align-items: center; gap: 10px; color: var(--stone); }
   .eyebrow::before { content: ""; width: 28px; height: 2px; background: var(--stone); }
@@ -299,6 +309,13 @@
 <main class="view active" id="view-home">
 
   <div class="hero">
+    <!-- VIDEO HEADER: put your clip next to this file as hero.mp4 (and optionally hero.webm + hero-poster.jpg) -->
+    <video class="hero-video" id="hero-video" autoplay muted loop playsinline preload="metadata" poster="hero-poster.jpg" aria-hidden="true">
+      <source src="hero.webm" type="video/webm">
+      <source src="hero.mp4" type="video/mp4">
+    </video>
+    <div class="hero-shade"></div>
+    <button class="video-toggle" id="video-toggle" type="button" hidden>❚❚ Pause video</button>
     <div class="wrap">
       <div>
         <span class="eyebrow mono">Industrial recruitment · USA</span>
@@ -630,6 +647,15 @@
     document.getElementById("p-all-jobs").dataset.rec = id;
   }
   renderProfile("hr");
+
+  // Video header: show a pause button only once a video actually loads (accessibility: lets visitors stop motion)
+  const vid = document.getElementById("hero-video"), vbtn = document.getElementById("video-toggle");
+  if (vid.readyState >= 2) vbtn.hidden = false;
+  vid.addEventListener("loadeddata", () => { vbtn.hidden = false; });
+  vbtn.addEventListener("click", () => {
+    if (vid.paused) { vid.play(); vbtn.textContent = "❚❚ Pause video"; }
+    else { vid.pause(); vbtn.textContent = "▶ Play video"; }
+  });
 
   // Navigation between mockup views
   function go(view, anchor) {
